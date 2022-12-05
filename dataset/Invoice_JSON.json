@@ -1,0 +1,214 @@
+{
+	"name": "Invoice_JSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adl_nextstar_billing",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/Json_files_Gas"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "MongoJSON/invoice",
+				"container": "aurea-pipelines"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"InvoiceID": {
+					"type": "integer"
+				},
+				"ReferenceInvoiceNo": {
+					"type": "string"
+				},
+				"SpecialInvoiceTypeId": {
+					"type": "integer"
+				},
+				"InvLogID": {
+					"type": "integer"
+				},
+				"Customer_Profile ": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"CustID": {
+								"type": "integer"
+							},
+							"CustType": {
+								"type": "string"
+							},
+							"CustName": {
+								"type": "string"
+							},
+							"LastName": {
+								"type": "string"
+							},
+							"FirstName": {
+								"type": "string"
+							},
+							"City": {
+								"type": "string"
+							},
+							"GeoCode": {
+								"type": "string"
+							},
+							"State": {
+								"type": "string"
+							},
+							"Addr1": {
+								"type": "string"
+							},
+							"MailToSiteAddress": {
+								"type": "boolean"
+							},
+							"Zip": {
+								"type": "string"
+							},
+							"Zip4": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"Descriptive_fields ": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"InvAmt": {
+								"type": "number"
+							},
+							"DeliveryComment": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"Billing_Period ": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"BasePeriod": {
+								"type": "string"
+							},
+							"ServiceTo": {
+								"type": "string"
+							},
+							"ServiceFrom": {
+								"type": "string"
+							},
+							"BillCycle": {
+								"type": "integer"
+							},
+							"BillingTypeID": {
+								"type": "integer"
+							}
+						}
+					}
+				},
+				"Relevant_dates": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"DeliveryDate": {
+								"type": "string"
+							},
+							"InvDate": {
+								"type": "string"
+							},
+							"DueDate": {
+								"type": "string"
+							},
+							"PostDate": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"Invoice_items": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"InvDetID": {
+								"type": "integer"
+							},
+							"RateDetID": {
+								"type": "integer"
+							},
+							"ConsDetID": {
+								"type": "integer"
+							},
+							"MeterID": {
+								"type": "integer"
+							},
+							"RateCode": {
+								"type": "string"
+							},
+							"InvDetDesc": {
+								"type": "string"
+							},
+							"InvDetQty": {
+								"type": "number"
+							},
+							"InvDetAmt": {
+								"type": "number"
+							},
+							"Rate": {
+								"type": "number"
+							},
+							"ServiceTo": {
+								"type": "string"
+							},
+							"ServiceFrom": {
+								"type": "string"
+							},
+							"GeoCode": {
+								"type": "string"
+							},
+							"RateDescID": {
+								"type": "integer"
+							},
+							"TaxAssessment": {
+								"type": "integer"
+							},
+							"CategoryID": {
+								"type": "integer"
+							},
+							"ConsUnitID": {
+								"type": "integer"
+							},
+							"ItemCode": {
+								"type": "string"
+							},
+							"Unit": {
+								"type": "string"
+							},
+							"CchVersion": {
+								"type": "integer"
+							},
+							"GroupCode": {
+								"type": "string"
+							},
+							"Taxable": {
+								"type": "string"
+							},
+							"RegisterNumber": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

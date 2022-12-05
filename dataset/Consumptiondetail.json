@@ -1,0 +1,88 @@
+{
+	"name": "Consumptiondetail",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Aurea",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/SQL Sources"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ConsDetID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ConsID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ConsDetType",
+				"type": "varchar"
+			},
+			{
+				"name": "ConsDetQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "ConsUnitID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ConsMultiplier",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 2
+			},
+			{
+				"name": "Source",
+				"type": "varchar"
+			},
+			{
+				"name": "SourceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MeterRegisterId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CreateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "LastModifiedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CreatedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ModifiedByID",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ConsumptionDetail"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

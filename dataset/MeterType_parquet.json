@@ -1,0 +1,25 @@
+{
+	"name": "MeterType_parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adl_nextstar_billing",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/Aurea_export_parquet_files"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "MeterType",
+				"folderPath": "parquet-aurea-raw",
+				"container": "aurea-pipelines"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

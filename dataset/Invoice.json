@@ -1,0 +1,192 @@
+{
+	"name": "Invoice",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Aurea",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/SQL Sources"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "InvoiceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AcctsRecHistID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ParentInvoiceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InvLogID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RateID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RevenuePeriod",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Type",
+				"type": "varchar"
+			},
+			{
+				"name": "BasePeriod",
+				"type": "varchar"
+			},
+			{
+				"name": "CustCode",
+				"type": "varchar"
+			},
+			{
+				"name": "InvAmt",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 2
+			},
+			{
+				"name": "TotalDetailAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "InvDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "PrintDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "PostDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DueDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ServiceFrom",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ServiceTo",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "UserID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PaymentPlanFlag",
+				"type": "bit"
+			},
+			{
+				"name": "FinalFlag",
+				"type": "bit"
+			},
+			{
+				"name": "BillingTypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ReferenceInvoiceNo",
+				"type": "varchar"
+			},
+			{
+				"name": "TDSPTemplateID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BillCycle",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "EventCleared",
+				"type": "bit"
+			},
+			{
+				"name": "PaidDate",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "migr_bill_batch_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Migr_acct_no",
+				"type": "varchar"
+			},
+			{
+				"name": "migr_service_Id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SpecialInvoiceTypeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DeliveryDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DeliveryStatus",
+				"type": "tinyint",
+				"precision": 3
+			},
+			{
+				"name": "DeliveryComment",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Invoice"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

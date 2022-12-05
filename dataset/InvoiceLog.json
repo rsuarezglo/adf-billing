@@ -1,0 +1,115 @@
+{
+	"name": "InvoiceLog",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Aurea",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/SQL Sources"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "InvLogID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BillingStarted",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "InvoiceDate",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "BasePeriod",
+				"type": "char"
+			},
+			{
+				"name": "DateFrom",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "DateTo",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "CustID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ReadCycle",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ServiceCycle",
+				"type": "char"
+			},
+			{
+				"name": "BillCycle",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CSPID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RevenuePeriod",
+				"type": "char"
+			},
+			{
+				"name": "InvCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ErrCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BillingStatus",
+				"type": "varchar"
+			},
+			{
+				"name": "BillingComment",
+				"type": "varchar"
+			},
+			{
+				"name": "RegChgs",
+				"type": "char"
+			},
+			{
+				"name": "BillingCompleted",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Created",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"table": "InvoiceLog"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

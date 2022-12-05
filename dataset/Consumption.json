@@ -1,0 +1,198 @@
+{
+	"name": "Consumption",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Aurea",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/SQL Sources"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ConsID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MeterID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InvoiceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DateFrom",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DateTo",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "IntervalTime",
+				"type": "char"
+			},
+			{
+				"name": "BegRead",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "EndRead",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "SeqNo",
+				"type": "char"
+			},
+			{
+				"name": "Status",
+				"type": "char"
+			},
+			{
+				"name": "Note",
+				"type": "char"
+			},
+			{
+				"name": "Type",
+				"type": "char"
+			},
+			{
+				"name": "ReadingMth",
+				"type": "char"
+			},
+			{
+				"name": "Source",
+				"type": "varchar"
+			},
+			{
+				"name": "SourceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RequestID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Processed",
+				"type": "char"
+			},
+			{
+				"name": "ProcessDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DoNotProcess",
+				"type": "char"
+			},
+			{
+				"name": "DNPCode",
+				"type": "char"
+			},
+			{
+				"name": "FinalFlag",
+				"type": "bit"
+			},
+			{
+				"name": "IsBeginReadLDCEstimate",
+				"type": "bit"
+			},
+			{
+				"name": "IsEndReadLDCEstimate",
+				"type": "bit"
+			},
+			{
+				"name": "CreateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CreatedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "migr_bill_batch_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Migr_acct_no",
+				"type": "varchar"
+			},
+			{
+				"name": "migr_service_Id",
+				"type": "varchar"
+			},
+			{
+				"name": "migr_division_code",
+				"type": "varchar"
+			},
+			{
+				"name": "migr_meter_number",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifiedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ModifiedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ValidatedFlag",
+				"type": "bit"
+			},
+			{
+				"name": "ValidatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ThermFactor",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 6
+			},
+			{
+				"name": "DocumentDueDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "BillingTypeID",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Consumption"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

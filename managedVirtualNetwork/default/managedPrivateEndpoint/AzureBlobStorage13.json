@@ -1,0 +1,7 @@
+{
+	"name": "AzureBlobStorage13",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/18658119-e528-4a7f-ac73-127091427fac/resourceGroups/NextStarDev1RG/providers/Microsoft.Storage/storageAccounts/stgbillingpoc",
+		"groupId": "blob"
+	}
+}

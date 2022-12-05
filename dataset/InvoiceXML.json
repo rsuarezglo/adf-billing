@@ -1,0 +1,66 @@
+{
+	"name": "InvoiceXML",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Aurea",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/SQL Sources"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "InvoiceXMLID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InvoiceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InvoiceXML",
+				"type": "ntext"
+			},
+			{
+				"name": "CreateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "PrintFormatID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PrintStatusID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PhysicalFile",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PDFContent",
+				"type": "varbinary"
+			},
+			{
+				"name": "HasPDF",
+				"type": "bit"
+			},
+			{
+				"name": "MachineName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"table": "InvoiceXML"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

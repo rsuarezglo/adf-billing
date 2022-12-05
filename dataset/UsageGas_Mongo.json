@@ -1,0 +1,19 @@
+{
+	"name": "UsageGas_Mongo",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Nextstar_billing_MongoDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/Mongo colections"
+		},
+		"annotations": [],
+		"type": "MongoDbAtlasCollection",
+		"schema": [],
+		"typeProperties": {
+			"collection": "UsageGas"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

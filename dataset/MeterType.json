@@ -1,0 +1,49 @@
+{
+	"name": "MeterType",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Aurea",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/SQL Sources"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "TypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Description",
+				"type": "varchar"
+			},
+			{
+				"name": "ConsUnits",
+				"type": "varchar"
+			},
+			{
+				"name": "Multiplier",
+				"type": "tinyint",
+				"precision": 3
+			},
+			{
+				"name": "PeakUnits",
+				"type": "varchar"
+			},
+			{
+				"name": "LastReadDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "MeterType"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

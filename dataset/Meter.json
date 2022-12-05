@@ -1,0 +1,130 @@
+{
+	"name": "Meter",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Aurea",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/SQL Sources"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "MeterID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ESIIDID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AcctID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AddrID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PremID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MeterNo",
+				"type": "varchar"
+			},
+			{
+				"name": "MeterUniqueNo",
+				"type": "varchar"
+			},
+			{
+				"name": "Pool",
+				"type": "char"
+			},
+			{
+				"name": "MeterReadType",
+				"type": "varchar"
+			},
+			{
+				"name": "MeterFactoryID",
+				"type": "varchar"
+			},
+			{
+				"name": "MeterFactor",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 2
+			},
+			{
+				"name": "BegRead",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "EndRead",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "DateFrom",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Dateto",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "MeterStatus",
+				"type": "char"
+			},
+			{
+				"name": "SourceLevel",
+				"type": "tinyint",
+				"precision": 3
+			},
+			{
+				"name": "CreateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "EdiRateClassId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "EdiLoadProfileId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AMSIndicator",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Meter"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

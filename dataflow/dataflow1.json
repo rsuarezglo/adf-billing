@@ -1,0 +1,167 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ConsumptionDetail_parquet",
+						"type": "DatasetReference"
+					},
+					"name": "cons"
+				},
+				{
+					"dataset": {
+						"referenceName": "Consumption_parquet",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Consumption_json",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "select1"
+				},
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "select2"
+				},
+				{
+					"name": "select3"
+				},
+				{
+					"name": "join1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          ConsDetID as integer,",
+				"          ConsID as integer,",
+				"          ConsDetType as string,",
+				"          ConsDetQty as decimal(18,4),",
+				"          ConsUnitID as integer,",
+				"          ConsMultiplier as decimal(9,2),",
+				"          Source as string,",
+				"          SourceID as integer,",
+				"          MeterRegisterId as integer,",
+				"          CreateDate as timestamp,",
+				"          LastModifiedDate as timestamp,",
+				"          CreatedByID as integer,",
+				"          ModifiedByID as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     limit: 1000,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> cons",
+				"source(output(",
+				"          ConsID as integer,",
+				"          MeterID as integer,",
+				"          InvoiceID as integer,",
+				"          DateFrom as timestamp,",
+				"          DateTo as timestamp,",
+				"          IntervalTime as string,",
+				"          BegRead as decimal(18,4),",
+				"          EndRead as decimal(18,4),",
+				"          SeqNo as string,",
+				"          Status as string,",
+				"          Note as string,",
+				"          Type as string,",
+				"          ReadingMth as string,",
+				"          Source as string,",
+				"          SourceID as integer,",
+				"          RequestID as integer,",
+				"          Processed as string,",
+				"          ProcessDate as timestamp,",
+				"          DoNotProcess as string,",
+				"          DNPCode as string,",
+				"          FinalFlag as boolean,",
+				"          IsBeginReadLDCEstimate as boolean,",
+				"          IsEndReadLDCEstimate as boolean,",
+				"          CreateDate as timestamp,",
+				"          CreatedByID as integer,",
+				"          migr_bill_batch_id as integer,",
+				"          Migr_acct_no as string,",
+				"          migr_service_Id as string,",
+				"          migr_division_code as string,",
+				"          migr_meter_number as string,",
+				"          LastModifiedDate as timestamp,",
+				"          ModifiedByID as integer,",
+				"          ValidatedFlag as boolean,",
+				"          ValidatedDate as timestamp,",
+				"          ThermFactor as decimal(18,6),",
+				"          DocumentDueDate as timestamp,",
+				"          BillingTypeID as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     limit: 1000,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> source1",
+				"cons select(mapColumn(",
+				"          ConsID,",
+				"          ConsDetID,",
+				"          ConsDetType,",
+				"          ConsDetQty,",
+				"          ConsUnitID",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 derive(Detail = @(ConsDetID=ConsDetID,",
+				"          ConsDetQty=ConsDetQty,",
+				"          ConsDetType=ConsDetType,",
+				"          ConsUnitID=ConsUnitID)) ~> derivedColumn1",
+				"derivedColumn1 select(mapColumn(",
+				"          ConsID,",
+				"          Detail",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select2",
+				"source1 select(mapColumn(",
+				"          ConsID,",
+				"          MeterID,",
+				"          InvoiceID,",
+				"          DateFrom,",
+				"          DateTo,",
+				"          IntervalTime,",
+				"          BegRead,",
+				"          EndRead,",
+				"          SeqNo,",
+				"          Status,",
+				"          Type,",
+				"          ReadingMth,",
+				"          Source,",
+				"          SourceID,",
+				"          RequestID,",
+				"          Processed,",
+				"          BillingTypeID",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select3",
+				"select3, select2 join(select3@ConsID == select2@ConsID,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     truncate: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

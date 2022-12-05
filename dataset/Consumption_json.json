@@ -1,0 +1,23 @@
+{
+	"name": "Consumption_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adl_nextstar_billing",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/Json_files_Gas"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "MongoJSON/Usagegas",
+				"container": "aurea-pipelines"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

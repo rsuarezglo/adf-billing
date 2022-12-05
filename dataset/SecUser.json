@@ -1,0 +1,121 @@
+{
+	"name": "SecUser",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Aurea",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/SQL Sources"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "UserID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ClientID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UserIdentifier",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "UserLogin",
+				"type": "varchar"
+			},
+			{
+				"name": "UserPassword",
+				"type": "varchar"
+			},
+			{
+				"name": "Salt",
+				"type": "varchar"
+			},
+			{
+				"name": "FirstName",
+				"type": "varchar"
+			},
+			{
+				"name": "LastName",
+				"type": "varchar"
+			},
+			{
+				"name": "Email",
+				"type": "varchar"
+			},
+			{
+				"name": "LastChangeDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ChangePasswordFlag",
+				"type": "bit"
+			},
+			{
+				"name": "ReadOnlyFlag",
+				"type": "bit"
+			},
+			{
+				"name": "ActiveFlag",
+				"type": "bit"
+			},
+			{
+				"name": "CSPID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InvoiceEmailNotifications",
+				"type": "bit"
+			},
+			{
+				"name": "LastInvoiceNotificationDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "LastLoginSuccess",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Failed",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DefaultUrl",
+				"type": "varchar"
+			},
+			{
+				"name": "EncryptionKey",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastPasswordChangeDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "PasswordNeverExpires",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SecUser"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,148 @@
+{
+	"name": "Address",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Aurea",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/SQL Sources"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "AddrID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ValidationStatusID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AttnMS",
+				"type": "varchar"
+			},
+			{
+				"name": "Addr1",
+				"type": "varchar"
+			},
+			{
+				"name": "Addr2",
+				"type": "varchar"
+			},
+			{
+				"name": "City",
+				"type": "varchar"
+			},
+			{
+				"name": "State",
+				"type": "char"
+			},
+			{
+				"name": "Zip",
+				"type": "varchar"
+			},
+			{
+				"name": "Zip4",
+				"type": "char"
+			},
+			{
+				"name": "DPBC",
+				"type": "char"
+			},
+			{
+				"name": "CityID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CountyID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "County",
+				"type": "nvarchar"
+			},
+			{
+				"name": "HomePhone",
+				"type": "varchar"
+			},
+			{
+				"name": "WorkPhone",
+				"type": "varchar"
+			},
+			{
+				"name": "FaxPhone",
+				"type": "varchar"
+			},
+			{
+				"name": "OtherPhone",
+				"type": "varchar"
+			},
+			{
+				"name": "Email",
+				"type": "varchar"
+			},
+			{
+				"name": "ESIID",
+				"type": "varchar"
+			},
+			{
+				"name": "GeoCode",
+				"type": "varchar"
+			},
+			{
+				"name": "Status",
+				"type": "char"
+			},
+			{
+				"name": "DeliveryPointCode",
+				"type": "char"
+			},
+			{
+				"name": "CreateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Migr_Enrollid",
+				"type": "varchar"
+			},
+			{
+				"name": "PhoneExtension",
+				"type": "varchar"
+			},
+			{
+				"name": "OtherExtension",
+				"type": "varchar"
+			},
+			{
+				"name": "FaxExtension",
+				"type": "varchar"
+			},
+			{
+				"name": "TaxingDistrict",
+				"type": "varchar"
+			},
+			{
+				"name": "TaxInCity",
+				"type": "bit"
+			},
+			{
+				"name": "CchVersion",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Address"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

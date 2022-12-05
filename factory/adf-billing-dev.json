@@ -1,0 +1,14 @@
+{
+	"name": "adf-billing-dev",
+	"properties": {
+		"globalConfigurations": {
+			"PipelineBillingEnabled": "true"
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2ee4bbf1-5cf4-46f5-89a4-72bf9ce0954f",
+		"tenantId": "15f3c881-6b03-4ff6-8559-77bf5177818f"
+	}
+}

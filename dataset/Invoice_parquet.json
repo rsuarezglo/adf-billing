@@ -1,0 +1,180 @@
+{
+	"name": "Invoice_parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adl_nextstar_billing",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/Aurea_export_parquet_files"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Invoice",
+				"folderPath": "parquet-aurea-raw",
+				"container": "aurea-pipelines"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "ConsID",
+				"type": "INT32"
+			},
+			{
+				"name": "MeterID",
+				"type": "INT32"
+			},
+			{
+				"name": "InvoiceID",
+				"type": "INT32"
+			},
+			{
+				"name": "DateFrom",
+				"type": "INT96"
+			},
+			{
+				"name": "DateTo",
+				"type": "INT96"
+			},
+			{
+				"name": "IntervalTime",
+				"type": "UTF8"
+			},
+			{
+				"name": "BegRead",
+				"type": "DECIMAL",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "EndRead",
+				"type": "DECIMAL",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "SeqNo",
+				"type": "UTF8"
+			},
+			{
+				"name": "Status",
+				"type": "UTF8"
+			},
+			{
+				"name": "Note",
+				"type": "UTF8"
+			},
+			{
+				"name": "Type",
+				"type": "UTF8"
+			},
+			{
+				"name": "ReadingMth",
+				"type": "UTF8"
+			},
+			{
+				"name": "Source",
+				"type": "UTF8"
+			},
+			{
+				"name": "SourceID",
+				"type": "INT32"
+			},
+			{
+				"name": "RequestID",
+				"type": "INT32"
+			},
+			{
+				"name": "Processed",
+				"type": "UTF8"
+			},
+			{
+				"name": "ProcessDate",
+				"type": "INT96"
+			},
+			{
+				"name": "DoNotProcess",
+				"type": "UTF8"
+			},
+			{
+				"name": "DNPCode",
+				"type": "UTF8"
+			},
+			{
+				"name": "FinalFlag",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "IsBeginReadLDCEstimate",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "IsEndReadLDCEstimate",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "CreateDate",
+				"type": "INT96"
+			},
+			{
+				"name": "CreatedByID",
+				"type": "INT32"
+			},
+			{
+				"name": "migr_bill_batch_id",
+				"type": "INT32"
+			},
+			{
+				"name": "Migr_acct_no",
+				"type": "UTF8"
+			},
+			{
+				"name": "migr_service_Id",
+				"type": "UTF8"
+			},
+			{
+				"name": "migr_division_code",
+				"type": "UTF8"
+			},
+			{
+				"name": "migr_meter_number",
+				"type": "UTF8"
+			},
+			{
+				"name": "LastModifiedDate",
+				"type": "INT96"
+			},
+			{
+				"name": "ModifiedByID",
+				"type": "INT32"
+			},
+			{
+				"name": "ValidatedFlag",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "ValidatedDate",
+				"type": "INT96"
+			},
+			{
+				"name": "ThermFactor",
+				"type": "DECIMAL",
+				"precision": 18,
+				"scale": 6
+			},
+			{
+				"name": "DocumentDueDate",
+				"type": "INT96"
+			},
+			{
+				"name": "BillingTypeID",
+				"type": "INT32"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

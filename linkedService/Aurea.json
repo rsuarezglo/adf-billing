@@ -1,0 +1,16 @@
+{
+	"name": "Aurea",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=aureadb.bse.local;initial catalog=paes_AEPEnergy;user id=svcReplUser-AEP",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJhNmRmOGM2MS03MGMyLTQwNzktOGFhNi03YTM3MWMyOTA4OTciLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "IR-AEPE-legacy",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

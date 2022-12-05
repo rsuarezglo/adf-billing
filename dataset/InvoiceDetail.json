@@ -1,0 +1,163 @@
+{
+	"name": "InvoiceDetail",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Aurea",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/SQL Sources"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "InvDetID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InvoiceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PremID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MeterID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CategoryID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RateDescID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RateDetID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ConsDetID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ConsUnitID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AncChgsID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CityID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CountyID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TaxSourceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TaxAssessment",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GeoCode",
+				"type": "varchar"
+			},
+			{
+				"name": "GroupCode",
+				"type": "varchar"
+			},
+			{
+				"name": "ItemCode",
+				"type": "varchar"
+			},
+			{
+				"name": "InvDetDesc",
+				"type": "varchar"
+			},
+			{
+				"name": "InvDetAmt",
+				"type": "decimal",
+				"precision": 30,
+				"scale": 2
+			},
+			{
+				"name": "InvDetQty",
+				"type": "decimal",
+				"precision": 30,
+				"scale": 4
+			},
+			{
+				"name": "Rate",
+				"type": "decimal",
+				"precision": 30,
+				"scale": 8
+			},
+			{
+				"name": "ServiceFrom",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ServiceTo",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Unit",
+				"type": "varchar"
+			},
+			{
+				"name": "Taxable",
+				"type": "char"
+			},
+			{
+				"name": "RegisterNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "RateCode",
+				"type": "varchar"
+			},
+			{
+				"name": "ReferenceInvDetId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CchVersion",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "InvoiceDetail"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

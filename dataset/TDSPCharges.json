@@ -1,0 +1,119 @@
+{
+	"name": "TDSPCharges",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Aurea",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/SQL Sources"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "TDSPChgsID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CSPDUNSID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Market810_Key",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InvoiceNbr",
+				"type": "varchar"
+			},
+			{
+				"name": "ESIID",
+				"type": "varchar"
+			},
+			{
+				"name": "TDSPChargeCode",
+				"type": "varchar"
+			},
+			{
+				"name": "TDSPChargeAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "TDSPChargeUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "TDSPChargeQty",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "TDSPRateClass",
+				"type": "varchar"
+			},
+			{
+				"name": "BeginServiceDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "EndServiceDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "InvoiceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InvoiceFlag",
+				"type": "bit"
+			},
+			{
+				"name": "ImportedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Processed",
+				"type": "char"
+			},
+			{
+				"name": "DoNotProcess",
+				"type": "char"
+			},
+			{
+				"name": "ProcessedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "InvoiceType",
+				"type": "varchar"
+			},
+			{
+				"name": "ProratedAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			}
+		],
+		"typeProperties": {
+			"schema": "DBO",
+			"table": "TDSPCharges"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

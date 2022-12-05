@@ -1,0 +1,57 @@
+{
+	"name": "PremiseStatus",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Aurea",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/SQL Sources"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "PremiseStatusLogID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PremID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OldStatusID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NewStatusID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StatusChangeDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ChangedByID",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "PremiseStatus"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

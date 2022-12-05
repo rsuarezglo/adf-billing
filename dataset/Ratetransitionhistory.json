@@ -1,0 +1,237 @@
+{
+	"name": "Ratetransitionhistory",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Aurea",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/SQL Sources"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ProductID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RateID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LDCCode",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PlanType",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "TDSPTemplateID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Description",
+				"type": "varchar"
+			},
+			{
+				"name": "BeginDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "EndDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CustType",
+				"type": "varchar"
+			},
+			{
+				"name": "Graduated",
+				"type": "char"
+			},
+			{
+				"name": "RangeTier1",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RangeTier2",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SortOrder",
+				"type": "tinyint",
+				"precision": 3
+			},
+			{
+				"name": "ActiveFlag",
+				"type": "bit"
+			},
+			{
+				"name": "Uplift",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 9
+			},
+			{
+				"name": "CSATDSPTemplateID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CAATDSPTemplateID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PriceDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "MarketingCode",
+				"type": "varchar"
+			},
+			{
+				"name": "RateTypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ConsUnitID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Default",
+				"type": "bit"
+			},
+			{
+				"name": "DivisionCode",
+				"type": "varchar"
+			},
+			{
+				"name": "RateDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "ServiceType",
+				"type": "varchar"
+			},
+			{
+				"name": "CSPId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TermsId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RolloverProductId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CommissionId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CommissionAmt",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 9
+			},
+			{
+				"name": "CancelFeeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MonthlyChargeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductCode",
+				"type": "varchar"
+			},
+			{
+				"name": "RatePackageId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductName",
+				"type": "varchar"
+			},
+			{
+				"name": "TermDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DiscountTypeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DiscountAmount",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 8
+			},
+			{
+				"name": "ProductZoneID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "IsGreen",
+				"type": "bit"
+			},
+			{
+				"name": "IsBestChoice",
+				"type": "bit"
+			},
+			{
+				"name": "ActiveEnrollmentFlag",
+				"type": "bit"
+			},
+			{
+				"name": "CreditScoreThreshold",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "DepositAmount",
+				"type": "smallmoney",
+				"precision": 10,
+				"scale": 4
+			},
+			{
+				"name": "Incentives",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RateTransitionHistory"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,12 @@
+{
+	"name": "IR-AEPE-legacy",
+	"properties": {
+		"type": "SelfHosted",
+		"typeProperties": {
+			"linkedInfo": {
+				"resourceId": "/subscriptions/db2c3c85-f092-4a07-8625-d43b6f571ba4/resourcegroups/Data_engineering_sandbox/providers/Microsoft.DataFactory/factories/adf-poc-nexstar/integrationruntimes/ir-poc-nextstar",
+				"authorizationType": "Rbac"
+			}
+		}
+	}
+}

@@ -1,0 +1,132 @@
+{
+	"name": "AlertQueue",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Aurea",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/SQL Sources"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "QueueID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AlertID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StatusID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PriorityID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PremID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InvoiceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ESIID",
+				"type": "varchar"
+			},
+			{
+				"name": "Subject",
+				"type": "varchar"
+			},
+			{
+				"name": "ReferenceURL",
+				"type": "varchar"
+			},
+			{
+				"name": "CreateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "StatusDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "StatusByUserID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Description",
+				"type": "text"
+			},
+			{
+				"name": "ApprovalEventId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RequestID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Source",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SourceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RejectEventID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "EscalateFlag",
+				"type": "bit"
+			},
+			{
+				"name": "EnrollCustID",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "AlertQueue"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

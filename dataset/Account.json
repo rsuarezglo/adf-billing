@@ -1,0 +1,72 @@
+{
+	"name": "Account",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Aurea",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/SQL Sources"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "AccountID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AccountTypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RateID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AcctsRecID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AccountNo",
+				"type": "varchar"
+			},
+			{
+				"name": "BudgetBilling",
+				"type": "char"
+			},
+			{
+				"name": "BudgetBillingAmt",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "EffectiveDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ExpirationDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Account"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

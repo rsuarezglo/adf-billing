@@ -1,0 +1,193 @@
+{
+	"name": "InvoiceTax",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Aurea",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/SQL Sources"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "InvoiceTaxID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InvoiceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TaxAssessment",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TaxRate",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 8
+			},
+			{
+				"name": "ChargeTotal",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 2
+			},
+			{
+				"name": "TaxTotal",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 2
+			},
+			{
+				"name": "GeoCode",
+				"type": "varchar"
+			},
+			{
+				"name": "TaxType",
+				"type": "varchar"
+			},
+			{
+				"name": "TaxCategory",
+				"type": "varchar"
+			},
+			{
+				"name": "GroupCode",
+				"type": "varchar"
+			},
+			{
+				"name": "ItemCode",
+				"type": "varchar"
+			},
+			{
+				"name": "UnitType",
+				"type": "varchar"
+			},
+			{
+				"name": "Location",
+				"type": "varchar"
+			},
+			{
+				"name": "TaxAuthority",
+				"type": "varchar"
+			},
+			{
+				"name": "Description",
+				"type": "varchar"
+			},
+			{
+				"name": "PassFlag",
+				"type": "varchar"
+			},
+			{
+				"name": "PassType",
+				"type": "varchar"
+			},
+			{
+				"name": "InvDetID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TaxBase",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 5
+			},
+			{
+				"name": "MaxTax",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "ExcessRate",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 6
+			},
+			{
+				"name": "TaxFee",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 6
+			},
+			{
+				"name": "MaxUnits",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 4
+			},
+			{
+				"name": "UnitBase",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 5
+			},
+			{
+				"name": "UnitTaxBase",
+				"type": "varchar"
+			},
+			{
+				"name": "ExcessFee",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 6
+			},
+			{
+				"name": "ThresholdType",
+				"type": "varchar"
+			},
+			{
+				"name": "CalcRate",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 6
+			},
+			{
+				"name": "Percentage",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 8
+			},
+			{
+				"name": "MinTaxBase",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "MaxTaxBase",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "MinUnitBase",
+				"type": "decimal",
+				"precision": 14,
+				"scale": 5
+			},
+			{
+				"name": "MaxUnitBase",
+				"type": "decimal",
+				"precision": 14,
+				"scale": 5
+			},
+			{
+				"name": "CchVersion",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"table": "InvoiceTax"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

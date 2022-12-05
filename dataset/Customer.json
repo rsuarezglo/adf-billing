@@ -1,0 +1,366 @@
+{
+	"name": "Customer",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Aurea",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/SQL Sources"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "CustID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CSPID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CSPCustID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PropertyID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PropertyCustID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustomerTypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustNo",
+				"type": "varchar"
+			},
+			{
+				"name": "CustName",
+				"type": "varchar"
+			},
+			{
+				"name": "LastName",
+				"type": "varchar"
+			},
+			{
+				"name": "FirstName",
+				"type": "varchar"
+			},
+			{
+				"name": "MidName",
+				"type": "varchar"
+			},
+			{
+				"name": "CompanyName",
+				"type": "varchar"
+			},
+			{
+				"name": "DBA",
+				"type": "varchar"
+			},
+			{
+				"name": "FederalTaxID",
+				"type": "varchar"
+			},
+			{
+				"name": "AcctsRecID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DistributedAR",
+				"type": "char"
+			},
+			{
+				"name": "ProductionCycle",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BillCycle",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RateID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SiteAddrID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MailAddrId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CorrAddrID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MailToSiteAddress",
+				"type": "bit"
+			},
+			{
+				"name": "BillCustID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MasterCustID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Master",
+				"type": "char"
+			},
+			{
+				"name": "CustStatus",
+				"type": "char"
+			},
+			{
+				"name": "BilledThru",
+				"type": "char"
+			},
+			{
+				"name": "CSRStatus",
+				"type": "varchar"
+			},
+			{
+				"name": "CustType",
+				"type": "varchar"
+			},
+			{
+				"name": "Services",
+				"type": "varchar"
+			},
+			{
+				"name": "FEIN",
+				"type": "varchar"
+			},
+			{
+				"name": "DOB",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "Taxable",
+				"type": "char"
+			},
+			{
+				"name": "LateFees",
+				"type": "char"
+			},
+			{
+				"name": "NoOfAccts",
+				"type": "tinyint",
+				"precision": 3
+			},
+			{
+				"name": "ConsolidatedInv",
+				"type": "char"
+			},
+			{
+				"name": "SummaryInv",
+				"type": "char"
+			},
+			{
+				"name": "MsgID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TDSPTemplateID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TDSPGroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LifeSupportIndictor",
+				"type": "varchar"
+			},
+			{
+				"name": "LifeSupportStatus",
+				"type": "varchar"
+			},
+			{
+				"name": "LifeSupportDate",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "SpecialBenefitsPlan",
+				"type": "varchar"
+			},
+			{
+				"name": "BillFormat",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PrintLayoutID",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CreditScore",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "HitIndicator",
+				"type": "varchar"
+			},
+			{
+				"name": "RequiredDeposit",
+				"type": "varchar"
+			},
+			{
+				"name": "AccountManager",
+				"type": "varchar"
+			},
+			{
+				"name": "EnrollmentAlias",
+				"type": "varchar"
+			},
+			{
+				"name": "ContractID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ContractTerm",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "ContractStartDate",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "ContractEndDate",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "UserDefined1",
+				"type": "varchar"
+			},
+			{
+				"name": "CreateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "RateChangeDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ConversionAccountNo",
+				"type": "varchar"
+			},
+			{
+				"name": "PermitContactName",
+				"type": "varchar"
+			},
+			{
+				"name": "CustomerPrivacy",
+				"type": "bit"
+			},
+			{
+				"name": "UsagePrivacy",
+				"type": "bit"
+			},
+			{
+				"name": "CompanyRegistrationNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "VATNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "AccountStatus",
+				"type": "char"
+			},
+			{
+				"name": "AutoCreditAfterInvoiceFlag",
+				"type": "bit"
+			},
+			{
+				"name": "LidaDiscount",
+				"type": "bit"
+			},
+			{
+				"name": "DoNotDisconnect",
+				"type": "bit"
+			},
+			{
+				"name": "DDPlus1",
+				"type": "char"
+			},
+			{
+				"name": "CsrImportDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DeliveryTypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SpecialNeedsAddrID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PaymentModelId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PORFlag",
+				"type": "char"
+			},
+			{
+				"name": "PowerOutageAddrId",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"table": "Customer"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

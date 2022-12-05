@@ -1,0 +1,116 @@
+{
+	"name": "PaymentDetail",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Aurea",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/SQL Sources"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "PayDetID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PaymentID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InvoiceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AcctID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AcctsRecHistID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustNo",
+				"type": "varchar"
+			},
+			{
+				"name": "AcctNo",
+				"type": "varchar"
+			},
+			{
+				"name": "InvNo",
+				"type": "varchar"
+			},
+			{
+				"name": "PymtDetCode",
+				"type": "varchar"
+			},
+			{
+				"name": "Comment",
+				"type": "varchar"
+			},
+			{
+				"name": "Amount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "DateStamp",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "flag1",
+				"type": "bit"
+			},
+			{
+				"name": "flag2",
+				"type": "bit"
+			},
+			{
+				"name": "CreateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "LastModifiedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CreatedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ModifiedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TransferFlag",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"table": "PaymentDetail"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

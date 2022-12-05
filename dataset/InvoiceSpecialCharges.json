@@ -1,0 +1,94 @@
+{
+	"name": "InvoiceSpecialCharges",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Aurea",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/SQL Sources"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "InvoiceSpecialChargeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PremID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SpecialChargeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TaxAssessment",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InvoiceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ReferencedInvoiceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Amount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 8
+			},
+			{
+				"name": "SpecialChargeText",
+				"type": "varchar"
+			},
+			{
+				"name": "InvoiceDetailID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ESIID",
+				"type": "varchar"
+			},
+			{
+				"name": "CreateDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "UserID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BillNowFlag",
+				"type": "bit"
+			},
+			{
+				"name": "PremNo",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "InvoiceSpecialCharges"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,85 @@
+{
+	"name": "TDSPInvoice",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Aurea",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "GAS BILLING/SQL Sources"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "TDSPInvoiceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RequestID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InvoiceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PurposeCode",
+				"type": "varchar"
+			},
+			{
+				"name": "ReleaseNo",
+				"type": "varchar"
+			},
+			{
+				"name": "TransactionTypeCode",
+				"type": "varchar"
+			},
+			{
+				"name": "OriginalInvoiceNo",
+				"type": "varchar"
+			},
+			{
+				"name": "TotalAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "TaxAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "DueDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DateFrom",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DateTo",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "BulkInsertKey",
+				"type": "uniqueidentifier"
+			}
+		],
+		"typeProperties": {
+			"table": "TDSPInvoice"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
