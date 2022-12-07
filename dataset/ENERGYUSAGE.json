@@ -1,0 +1,20 @@
+{
+	"name": "ENERGYUSAGE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Bsecore01p",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Oracle sources"
+		},
+		"annotations": [],
+		"type": "OracleTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "AEPE_USAGE",
+			"table": "ENERGYUSAGE"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
