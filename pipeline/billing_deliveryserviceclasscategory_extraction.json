@@ -1,5 +1,5 @@
 {
-	"name": "deliveryserviceclasscategory_extraction",
+	"name": "billing_deliveryserviceclasscategory_extraction",
 	"properties": {
 		"activities": [
 			{

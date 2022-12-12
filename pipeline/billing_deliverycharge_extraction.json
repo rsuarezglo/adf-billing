@@ -1,5 +1,5 @@
 {
-	"name": "deliverycharge_extraction",
+	"name": "billing_deliverycharge_extraction",
 	"properties": {
 		"activities": [
 			{
