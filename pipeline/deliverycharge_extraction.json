@@ -518,9 +518,16 @@
 				]
 			},
 			{
-				"name": "Copy data1",
+				"name": "deliveryserviceclasscategoryextraction",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "deliverychargeextraction",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -530,8 +537,43 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"enableStaging": false
-				}
+					"source": {
+						"type": "OracleSource",
+						"oracleReaderQuery": "SELECT * FROM AEPE_BILLING.DELIVERYSERVICECLASSCATEGORY WHERE rownum <= 100",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DELIVERYSERVICECLASSCATEGORY",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DELIVERYSERVICECLASSCATEGORY_parquet",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []
