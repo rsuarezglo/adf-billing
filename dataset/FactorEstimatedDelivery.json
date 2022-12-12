@@ -1,0 +1,19 @@
+{
+	"name": "FactorEstimatedDelivery",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dev2core",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ELECTRICAL BILLING/Oracle sources"
+		},
+		"annotations": [],
+		"type": "OracleTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "AEPE_BILLING",
+			"table": "FACTORSESTIMATEDDELIVERY"
+		}
+	}
+}
