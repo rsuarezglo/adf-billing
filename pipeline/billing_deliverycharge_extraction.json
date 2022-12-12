@@ -17,7 +17,6 @@
 				"typeProperties": {
 					"source": {
 						"type": "OracleSource",
-						"oracleReaderQuery": "SELECT * FROM AEPE_BILLING.DELIVERYCHARGE WHERE rownum <= 100",
 						"partitionOption": "None",
 						"queryTimeout": "02:00:00"
 					},
