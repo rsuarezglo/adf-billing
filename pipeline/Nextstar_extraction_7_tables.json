@@ -1,5 +1,5 @@
 {
-	"name": "Nextstar_extraction_basetype",
+	"name": "Nextstar_extraction_7_tables",
 	"properties": {
 		"activities": [
 			{
@@ -49,6 +49,40 @@
 				"outputs": [
 					{
 						"referenceName": "BASETYPE_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "BillingInvoiceParameter",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "BaseType",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "BILLINGINVOICEPARAMETER",
 						"type": "DatasetReference"
 					}
 				]
