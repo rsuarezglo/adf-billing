@@ -1,5 +1,5 @@
 {
-	"name": "DELIVERYCHARGEINCLUDEDETAIL_parquet_copy1",
+	"name": "DELIVERYCHARGEINCLUDEDETAIL_parquet",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adl_nextstar_billing",
