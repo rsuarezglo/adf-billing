@@ -2,7 +2,7 @@
 	"name": "DELIVERYCHARGE",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "Bsecore01p",
+			"referenceName": "dev2core",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
