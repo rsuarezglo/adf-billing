@@ -1,9 +1,59 @@
 {
-	"name": "DAYLIGHTSAVINGTIME_extraction",
+	"name": "ENERGYHOURLYUSAGEDETAIL_extraction",
 	"properties": {
 		"activities": [
 			{
 				"name": "DAYLIGHTSAVINGTUME_extraction",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DAYLIGHTSAVINGTIME",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "daylightsavingtime_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "DAYLIGHTSAVINGTUME_extraction_copy1",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
