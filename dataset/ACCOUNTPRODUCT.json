@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
-			"name": "ELECTRICAL BILLING/Oracle sources"
+			"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Oracle sources"
 		},
 		"annotations": [],
 		"type": "OracleTable",

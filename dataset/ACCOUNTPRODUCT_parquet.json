@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
-			"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
+			"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Nextstar_export_parquet_files"
 		},
 		"annotations": [],
 		"type": "Parquet",
