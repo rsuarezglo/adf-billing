@@ -14,8 +14,8 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "daylightsavingtyme",
-				"folderPath": "parquet-aurea-raw",
-				"container": "aurea-pipelines"
+				"folderPath": "parquet-nextstar-raw",
+				"container": "nexstar"
 			},
 			"compressionCodec": "snappy"
 		},
