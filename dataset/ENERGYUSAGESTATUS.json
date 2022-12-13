@@ -1,0 +1,20 @@
+{
+	"name": "ENERGYUSAGESTATUS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dev2core",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Oracle sources"
+		},
+		"annotations": [],
+		"type": "OracleTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "AEPE_USAGE",
+			"table": "ENERGYUSAGESTATUS"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

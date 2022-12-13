@@ -1,0 +1,20 @@
+{
+	"name": "ACCOUNTPRODUCTSERVICEPOINTDETAIL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dev2core",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Oracle sources"
+		},
+		"annotations": [],
+		"type": "OracleTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "AEPE_BILLING",
+			"table": "ACCOUNTPRODUCTSERVICEPOINTDETAIL"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
