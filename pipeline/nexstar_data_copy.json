@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "DAYLIGHTSAVINGTUME_extraction",
+				"name": "DAYLIGHTSAVINGTUME",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -57,7 +57,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "DAYLIGHTSAVINGTUME_extraction",
+						"activity": "DAYLIGHTSAVINGTUME",
 						"dependencyConditions": [
 							"Succeeded"
 						]
