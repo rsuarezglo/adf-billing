@@ -13,9 +13,9 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "Account",
-				"folderPath": "parquet-aurea-raw",
-				"container": "aurea-pipelines"
+				"fileName": "daylightsavingtime",
+				"folderPath": "parquet-nextstar-raw",
+				"container": "nexstar"
 			},
 			"compressionCodec": "snappy"
 		},
