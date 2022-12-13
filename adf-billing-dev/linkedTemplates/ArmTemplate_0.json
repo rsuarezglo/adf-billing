@@ -233,11 +233,11 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "Bsecore01p",
+					"referenceName": "dev2core",
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/Oracle sources"
+					"name": "ELECTRICAL BILLING/Oracle Sources"
 				},
 				"annotations": [],
 				"type": "OracleTable",
@@ -248,7 +248,113 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Bsecore01p')]"
+				"[concat(variables('factoryId'), '/linkedServices/dev2core')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTAGREEMENT')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "dev2core",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Oracle sources"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AEPE_PROVISIONING",
+					"table": "ACCOUNTPRODUCTAGREEMENT"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/dev2core')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTAGREEMENT_parquet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adl_nextstar_billing",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Nextstar_export_parquet_files"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "billingaccountproductagreement",
+						"folderPath": "parquet-nextstar-raw",
+						"container": "nextstar"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/adl_nextstar_billing')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTSERVICEPOINTDETAIL')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "dev2core",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Oracle sources"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AEPE_BILLING",
+					"table": "ACCOUNTPRODUCTSERVICEPOINTDETAIL"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/dev2core')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTSERVICEPOINTDETAIL_parquet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adl_nextstar_billing",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Nextstar_export_parquet_files"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "accountptroductservicepointdetail",
+						"folderPath": "parquet-nextstar-raw",
+						"container": "nextstar"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/adl_nextstar_billing')]"
 			]
 		},
 		{
@@ -373,9 +479,9 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "Account",
-						"folderPath": "parquet-aurea-raw",
-						"container": "aurea-pipelines"
+						"fileName": "daylightsavingtime",
+						"folderPath": "parquet-nextstar-raw",
+						"container": "nexstar"
 					},
 					"compressionCodec": "snappy"
 				},
@@ -561,614 +667,6 @@
 					"compressionCodec": "snappy"
 				},
 				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/adl_nextstar_billing')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AlertQueue')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Aurea",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "GAS BILLING/SQL Sources"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "QueueID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "AlertID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "TypeID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "StatusID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "PriorityID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "GroupID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "CustID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "PremID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "InvoiceID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ESIID",
-						"type": "varchar"
-					},
-					{
-						"name": "Subject",
-						"type": "varchar"
-					},
-					{
-						"name": "ReferenceURL",
-						"type": "varchar"
-					},
-					{
-						"name": "CreateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "StatusDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "StatusByUserID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Description",
-						"type": "text"
-					},
-					{
-						"name": "ApprovalEventId",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "RequestID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Source",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SourceID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "RejectEventID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "EscalateFlag",
-						"type": "bit"
-					},
-					{
-						"name": "EnrollCustID",
-						"type": "int",
-						"precision": 10
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "AlertQueue"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Aurea')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AlertQueue_parquet')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "adl_nextstar_billing",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "GAS BILLING/Aurea_export_parquet_files"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "AlertQueue",
-						"folderPath": "parquet-aurea-raw",
-						"container": "aurea-pipelines"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": [
-					{
-						"name": "ConsID",
-						"type": "INT32"
-					},
-					{
-						"name": "MeterID",
-						"type": "INT32"
-					},
-					{
-						"name": "InvoiceID",
-						"type": "INT32"
-					},
-					{
-						"name": "DateFrom",
-						"type": "INT96"
-					},
-					{
-						"name": "DateTo",
-						"type": "INT96"
-					},
-					{
-						"name": "IntervalTime",
-						"type": "UTF8"
-					},
-					{
-						"name": "BegRead",
-						"type": "DECIMAL",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "EndRead",
-						"type": "DECIMAL",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "SeqNo",
-						"type": "UTF8"
-					},
-					{
-						"name": "Status",
-						"type": "UTF8"
-					},
-					{
-						"name": "Note",
-						"type": "UTF8"
-					},
-					{
-						"name": "Type",
-						"type": "UTF8"
-					},
-					{
-						"name": "ReadingMth",
-						"type": "UTF8"
-					},
-					{
-						"name": "Source",
-						"type": "UTF8"
-					},
-					{
-						"name": "SourceID",
-						"type": "INT32"
-					},
-					{
-						"name": "RequestID",
-						"type": "INT32"
-					},
-					{
-						"name": "Processed",
-						"type": "UTF8"
-					},
-					{
-						"name": "ProcessDate",
-						"type": "INT96"
-					},
-					{
-						"name": "DoNotProcess",
-						"type": "UTF8"
-					},
-					{
-						"name": "DNPCode",
-						"type": "UTF8"
-					},
-					{
-						"name": "FinalFlag",
-						"type": "BOOLEAN"
-					},
-					{
-						"name": "IsBeginReadLDCEstimate",
-						"type": "BOOLEAN"
-					},
-					{
-						"name": "IsEndReadLDCEstimate",
-						"type": "BOOLEAN"
-					},
-					{
-						"name": "CreateDate",
-						"type": "INT96"
-					},
-					{
-						"name": "CreatedByID",
-						"type": "INT32"
-					},
-					{
-						"name": "migr_bill_batch_id",
-						"type": "INT32"
-					},
-					{
-						"name": "Migr_acct_no",
-						"type": "UTF8"
-					},
-					{
-						"name": "migr_service_Id",
-						"type": "UTF8"
-					},
-					{
-						"name": "migr_division_code",
-						"type": "UTF8"
-					},
-					{
-						"name": "migr_meter_number",
-						"type": "UTF8"
-					},
-					{
-						"name": "LastModifiedDate",
-						"type": "INT96"
-					},
-					{
-						"name": "ModifiedByID",
-						"type": "INT32"
-					},
-					{
-						"name": "ValidatedFlag",
-						"type": "BOOLEAN"
-					},
-					{
-						"name": "ValidatedDate",
-						"type": "INT96"
-					},
-					{
-						"name": "ThermFactor",
-						"type": "DECIMAL",
-						"precision": 18,
-						"scale": 6
-					},
-					{
-						"name": "DocumentDueDate",
-						"type": "INT96"
-					},
-					{
-						"name": "BillingTypeID",
-						"type": "INT32"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/adl_nextstar_billing')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Consumption')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Aurea",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "GAS BILLING/SQL Sources"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "ConsID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "MeterID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "InvoiceID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "DateFrom",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "DateTo",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "IntervalTime",
-						"type": "char"
-					},
-					{
-						"name": "BegRead",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "EndRead",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "SeqNo",
-						"type": "char"
-					},
-					{
-						"name": "Status",
-						"type": "char"
-					},
-					{
-						"name": "Note",
-						"type": "char"
-					},
-					{
-						"name": "Type",
-						"type": "char"
-					},
-					{
-						"name": "ReadingMth",
-						"type": "char"
-					},
-					{
-						"name": "Source",
-						"type": "varchar"
-					},
-					{
-						"name": "SourceID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "RequestID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Processed",
-						"type": "char"
-					},
-					{
-						"name": "ProcessDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "DoNotProcess",
-						"type": "char"
-					},
-					{
-						"name": "DNPCode",
-						"type": "char"
-					},
-					{
-						"name": "FinalFlag",
-						"type": "bit"
-					},
-					{
-						"name": "IsBeginReadLDCEstimate",
-						"type": "bit"
-					},
-					{
-						"name": "IsEndReadLDCEstimate",
-						"type": "bit"
-					},
-					{
-						"name": "CreateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "CreatedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "migr_bill_batch_id",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Migr_acct_no",
-						"type": "varchar"
-					},
-					{
-						"name": "migr_service_Id",
-						"type": "varchar"
-					},
-					{
-						"name": "migr_division_code",
-						"type": "varchar"
-					},
-					{
-						"name": "migr_meter_number",
-						"type": "varchar"
-					},
-					{
-						"name": "LastModifiedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "ModifiedByID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ValidatedFlag",
-						"type": "bit"
-					},
-					{
-						"name": "ValidatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "ThermFactor",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 6
-					},
-					{
-						"name": "DocumentDueDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "BillingTypeID",
-						"type": "int",
-						"precision": 10
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Consumption"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Aurea')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ConsumptionDetail_parquet')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "adl_nextstar_billing",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "GAS BILLING/Aurea_export_parquet_files"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "consumptiondetail",
-						"folderPath": "parquet-aurea-raw",
-						"container": "aurea-pipelines"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": [
-					{
-						"name": "ConsDetID",
-						"type": "INT32"
-					},
-					{
-						"name": "ConsID",
-						"type": "INT32"
-					},
-					{
-						"name": "ConsDetType",
-						"type": "UTF8"
-					},
-					{
-						"name": "ConsDetQty",
-						"type": "DECIMAL",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "ConsUnitID",
-						"type": "INT32"
-					},
-					{
-						"name": "ConsMultiplier",
-						"type": "DECIMAL",
-						"precision": 9,
-						"scale": 2
-					},
-					{
-						"name": "Source",
-						"type": "UTF8"
-					},
-					{
-						"name": "SourceID",
-						"type": "INT32"
-					},
-					{
-						"name": "MeterRegisterId",
-						"type": "INT32"
-					},
-					{
-						"name": "CreateDate",
-						"type": "INT96"
-					},
-					{
-						"name": "LastModifiedDate",
-						"type": "INT96"
-					},
-					{
-						"name": "CreatedByID",
-						"type": "INT32"
-					},
-					{
-						"name": "ModifiedByID",
-						"type": "INT32"
-					}
-				]
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/adl_nextstar_billing')]"
