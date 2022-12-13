@@ -12,8 +12,8 @@
 		"type": "OracleTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "AEPE_COMMONS",
-			"table": "DAYLIGHTSAVINGTIME"
+			"schema": "AEPE_BILLING",
+			"table": "ESTIMATEDUSAGE"
 		}
 	}
 }
