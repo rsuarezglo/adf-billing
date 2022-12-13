@@ -1,0 +1,165 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-billing-dev"
+		},
+		"Aurea_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Aurea'"
+		},
+		"Bsecore01p_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Bsecore01p'"
+		},
+		"Nextstar_billing_MongoDB_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Nextstar_billing_MongoDB'"
+		},
+		"adl_nextstar_billing_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'adl_nextstar_billing'"
+		},
+		"dev2core_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'dev2core'"
+		},
+		"Nextstar_billing_MongoDB_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Nextstarbilling"
+		},
+		"IR-AEPE-legacy_properties_typeProperties_linkedInfo_resourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/db2c3c85-f092-4a07-8625-d43b6f571ba4/resourcegroups/Data_engineering_sandbox/providers/Microsoft.DataFactory/factories/adf-poc-nexstar/integrationruntimes/ir-poc-nextstar"
+		},
+		"AzureBlobStorage13_properties_privateLinkResourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/18658119-e528-4a7f-ac73-127091427fac/resourceGroups/NextStarDev1RG/providers/Microsoft.Storage/storageAccounts/stgbillingpoc"
+		},
+		"AzureBlobStorage13_properties_groupId": {
+			"type": "string",
+			"defaultValue": "blob"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-billing-dev_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"Aurea_connectionString": {
+						"value": "[parameters('Aurea_connectionString')]"
+					},
+					"Bsecore01p_connectionString": {
+						"value": "[parameters('Bsecore01p_connectionString')]"
+					},
+					"Nextstar_billing_MongoDB_connectionString": {
+						"value": "[parameters('Nextstar_billing_MongoDB_connectionString')]"
+					},
+					"adl_nextstar_billing_connectionString": {
+						"value": "[parameters('adl_nextstar_billing_connectionString')]"
+					},
+					"dev2core_connectionString": {
+						"value": "[parameters('dev2core_connectionString')]"
+					},
+					"IR-AEPE-legacy_properties_typeProperties_linkedInfo_resourceId": {
+						"value": "[parameters('IR-AEPE-legacy_properties_typeProperties_linkedInfo_resourceId')]"
+					},
+					"Nextstar_billing_MongoDB_properties_typeProperties_database": {
+						"value": "[parameters('Nextstar_billing_MongoDB_properties_typeProperties_database')]"
+					},
+					"AzureBlobStorage13_properties_privateLinkResourceId": {
+						"value": "[parameters('AzureBlobStorage13_properties_privateLinkResourceId')]"
+					},
+					"AzureBlobStorage13_properties_groupId": {
+						"value": "[parameters('AzureBlobStorage13_properties_groupId')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "adf-billing-dev_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-billing-dev_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "adf-billing-dev_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-billing-dev_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "adf-billing-dev_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-billing-dev_ArmTemplate_2')]"
+			]
+		}
+	]
+}

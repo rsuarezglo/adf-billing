@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-billing-dev"
+		},
+		"Aurea_connectionString": {
+			"value": ""
+		},
+		"Bsecore01p_connectionString": {
+			"value": ""
+		},
+		"Nextstar_billing_MongoDB_connectionString": {
+			"value": ""
+		},
+		"adl_nextstar_billing_connectionString": {
+			"value": ""
+		},
+		"dev2core_connectionString": {
+			"value": ""
+		},
+		"Nextstar_billing_MongoDB_properties_typeProperties_database": {
+			"value": "Nextstarbilling"
+		},
+		"IR-AEPE-legacy_properties_typeProperties_linkedInfo_resourceId": {
+			"value": "/subscriptions/db2c3c85-f092-4a07-8625-d43b6f571ba4/resourcegroups/Data_engineering_sandbox/providers/Microsoft.DataFactory/factories/adf-poc-nexstar/integrationruntimes/ir-poc-nextstar"
+		},
+		"AzureBlobStorage13_properties_privateLinkResourceId": {
+			"value": "/subscriptions/18658119-e528-4a7f-ac73-127091427fac/resourceGroups/NextStarDev1RG/providers/Microsoft.Storage/storageAccounts/stgbillingpoc"
+		},
+		"AzureBlobStorage13_properties_groupId": {
+			"value": "blob"
+		}
+	}
+}
