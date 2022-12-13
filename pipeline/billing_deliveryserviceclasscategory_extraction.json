@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "deliveryserviceclasscategory_extraction",
+				"name": "billing_deliveryserviceclasscategory_extraction",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
