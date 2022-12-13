@@ -1,5 +1,5 @@
 {
-	"name": "ENERGYHOURLYUSAGEDETAIL_extraction",
+	"name": "nexstar_data_extraction",
 	"properties": {
 		"activities": [
 			{
