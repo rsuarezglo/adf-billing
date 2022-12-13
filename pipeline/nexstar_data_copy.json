@@ -1,5 +1,5 @@
 {
-	"name": "nexstar_data_extraction",
+	"name": "nexstar_data_copy",
 	"properties": {
 		"activities": [
 			{
@@ -53,9 +53,16 @@
 				]
 			},
 			{
-				"name": "DAYLIGHTSAVINGTUME_extraction_copy1",
+				"name": "ENERGYHOURLYUSAGEDETAIL",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "DAYLIGHTSAVINGTUME_extraction",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -91,13 +98,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DAYLIGHTSAVINGTIME",
+						"referenceName": "ENERGYHOURLYUSAGEDETAIL",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "daylightsavingtime_parquet",
+						"referenceName": "energyhourlyusagedetail_parquet",
 						"type": "DatasetReference"
 					}
 				]
