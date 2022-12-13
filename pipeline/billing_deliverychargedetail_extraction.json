@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "deliverychargedetail_extraction",
+				"name": "billing_deliverychargedetail_extraction",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
