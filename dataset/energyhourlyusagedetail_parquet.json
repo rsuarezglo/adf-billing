@@ -1,0 +1,25 @@
+{
+	"name": "energyhourlyusagedetail_parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adl_nextstar_billing",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ELECTRICAL BILLING/nextar_export_parquet_files"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "energyhourlyusagedetail",
+				"folderPath": "parquet-nextstar-raw",
+				"container": "nexstar"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
