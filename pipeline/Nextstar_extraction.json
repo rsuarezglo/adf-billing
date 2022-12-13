@@ -17,26 +17,35 @@
 				"typeProperties": {
 					"source": {
 						"type": "OracleSource",
-						"partitionOption": "DynamicRange",
-						"partitionSettings": {
-							"partitionColumnName": "ACCOUNTID",
-							"partitionUpperBound": "",
-							"partitionLowerBound": ""
-						},
+						"partitionOption": "None",
 						"convertDecimalToInteger": false,
 						"queryTimeout": "02:00:00"
 					},
 					"sink": {
 						"type": "ParquetSink",
 						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings"
+							"type": "AzureBlobStorageWriteSettings",
+							"maxConcurrentConnections": 8,
+							"blockSizeInMB": 100
 						},
 						"formatSettings": {
 							"type": "ParquetWriteSettings"
 						}
 					},
 					"enableStaging": false
-				}
+				},
+				"inputs": [
+					{
+						"referenceName": "ACCOUNTPRODUCT",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ACCOUNTPRODUCT_parquet",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": [],
