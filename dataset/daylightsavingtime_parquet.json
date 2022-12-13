@@ -1,5 +1,5 @@
 {
-	"name": "Account_parquet_copy1",
+	"name": "daylightsavingtime_parquet",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adl_nextstar_billing",
@@ -13,7 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "daylightsavingtyme",
+				"fileName": "daylightsavingtime",
 				"folderPath": "parquet-nextstar-raw",
 				"container": "nexstar"
 			},
