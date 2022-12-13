@@ -1,5 +1,5 @@
 {
-	"name": "ACCOUNTPRODUCT",
+	"name": "ENERGYMONTHLYSERVICEPOINT",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "dev2core",
@@ -12,8 +12,8 @@
 		"type": "OracleTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "AEPE_PROVISIONING",
-			"table": "ACCOUNTPRODUCT"
+			"schema": "AEPE_BILLING",
+			"table": "ENERGYMONTHLYSERVICEPOINT"
 		}
 	}
 }

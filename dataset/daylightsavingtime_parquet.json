@@ -1,12 +1,12 @@
 {
-	"name": "Account_parquet",
+	"name": "daylightsavingtime_parquet",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adl_nextstar_billing",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
-			"name": "GAS BILLING/Aurea_export_parquet_files"
+			"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
 		},
 		"annotations": [],
 		"type": "Parquet",
