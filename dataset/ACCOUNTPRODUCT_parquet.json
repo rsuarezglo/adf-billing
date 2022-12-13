@@ -1,5 +1,5 @@
 {
-	"name": "ACCOUNTPRODUCT_parquet_copy1",
+	"name": "ACCOUNTPRODUCT_parquet",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adl_nextstar_billing",
