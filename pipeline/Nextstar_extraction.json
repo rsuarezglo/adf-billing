@@ -165,7 +165,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DELIVERYBALANCE_parquet",
+						"referenceName": "DELIVERYCHARGESTATUS_parquet",
 						"type": "DatasetReference"
 					}
 				]
