@@ -17,12 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "OracleSource",
-						"partitionOption": "DynamicRange",
-						"partitionSettings": {
-							"partitionColumnName": "ID",
-							"partitionUpperBound": "",
-							"partitionLowerBound": ""
-						},
+						"partitionOption": "None",
 						"convertDecimalToInteger": false,
 						"queryTimeout": "02:00:00"
 					},
@@ -61,7 +56,14 @@
 			{
 				"name": "DeliveryChargeItem",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "DeliveryBalance",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -73,12 +75,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "OracleSource",
-						"partitionOption": "DynamicRange",
-						"partitionSettings": {
-							"partitionColumnName": "ID",
-							"partitionUpperBound": "",
-							"partitionLowerBound": ""
-						},
+						"partitionOption": "None",
 						"convertDecimalToInteger": false,
 						"queryTimeout": "02:00:00"
 					},
@@ -117,7 +114,14 @@
 			{
 				"name": "DeliveryChargeStatus",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "DeliveryMeterDetail",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -129,12 +133,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "OracleSource",
-						"partitionOption": "DynamicRange",
-						"partitionSettings": {
-							"partitionColumnName": "ID",
-							"partitionUpperBound": "",
-							"partitionLowerBound": ""
-						},
+						"partitionOption": "None",
 						"convertDecimalToInteger": false,
 						"queryTimeout": "02:00:00"
 					},
@@ -173,7 +172,14 @@
 			{
 				"name": "DeliveryMeterDetail",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "DeliveryChargeItem",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -185,12 +191,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "OracleSource",
-						"partitionOption": "DynamicRange",
-						"partitionSettings": {
-							"partitionColumnName": "ID",
-							"partitionUpperBound": "",
-							"partitionLowerBound": ""
-						},
+						"partitionOption": "None",
 						"convertDecimalToInteger": false,
 						"queryTimeout": "02:00:00"
 					},
@@ -229,7 +230,14 @@
 			{
 				"name": "DeliveryServiceClassCategory",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "DeliveryChargeStatus",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -241,12 +249,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "OracleSource",
-						"partitionOption": "DynamicRange",
-						"partitionSettings": {
-							"partitionColumnName": "ID",
-							"partitionUpperBound": "",
-							"partitionLowerBound": ""
-						},
+						"partitionOption": "None",
 						"convertDecimalToInteger": false,
 						"queryTimeout": "02:00:00"
 					},
@@ -285,7 +288,14 @@
 			{
 				"name": "FactorEstimatedDelivery",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "DeliveryServiceClassCategory",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -297,12 +307,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "OracleSource",
-						"partitionOption": "DynamicRange",
-						"partitionSettings": {
-							"partitionColumnName": "ID",
-							"partitionUpperBound": "",
-							"partitionLowerBound": ""
-						},
+						"partitionOption": "None",
 						"convertDecimalToInteger": false,
 						"queryTimeout": "02:00:00"
 					},
