@@ -219,7 +219,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "UNITOFMEASURE_parquet",
+						"referenceName": "ACCOUNTPRODUCTSERVICEPOINTDETAIL_parquet",
 						"type": "DatasetReference"
 					}
 				]
