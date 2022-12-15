@@ -15,7 +15,7 @@
 				"type": "AzureBlobStorageLocation",
 				"fileName": "energyhourlyusagedetail",
 				"folderPath": "parquet-nextstar-raw",
-				"container": "nexstar"
+				"container": "nextstar"
 			},
 			"compressionCodec": "snappy"
 		},

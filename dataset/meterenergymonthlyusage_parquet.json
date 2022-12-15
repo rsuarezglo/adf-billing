@@ -15,7 +15,7 @@
 				"type": "AzureBlobStorageLocation",
 				"fileName": "meterenergymonthlyusage",
 				"folderPath": "parquet-nextstar-raw",
-				"container": "nexstar"
+				"container": "nextstar"
 			},
 			"compressionCodec": "snappy"
 		},
