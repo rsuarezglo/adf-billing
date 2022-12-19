@@ -13,7 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "billingaccountproductagreement",
+				"fileName": "accountproductagreement",
 				"folderPath": "parquet-nextstar-raw",
 				"container": "nextstar"
 			},
