@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "part-00000-tid-8868911708475209645-7828087e-6de2-469a-9ff4-48152297bc44-1274-1-c000.csv",
 				"folderPath": "jzegarra_results.csv",
 				"container": "nextstar"
 			},
