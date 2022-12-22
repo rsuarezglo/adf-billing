@@ -1,8 +1,0 @@
-{
-	"name": "Nextstar_extraction",
-	"properties": {
-		"annotations": [],
-		"lastPublishTime": "2022-12-02T22:07:20Z"
-	},
-	"type": "Microsoft.DataFactory/factories/pipelines"
-}
