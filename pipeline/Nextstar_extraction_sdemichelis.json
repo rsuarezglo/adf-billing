@@ -1,5 +1,5 @@
 {
-	"name": "nexstar_data_copy",
+	"name": "Nextstar_extraction_sdemichelis",
 	"properties": {
 		"activities": [
 			{
@@ -395,6 +395,9 @@
 				]
 			}
 		],
+		"folder": {
+			"name": "Extraction Nextstar"
+		},
 		"annotations": []
 	}
 }
