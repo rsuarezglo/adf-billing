@@ -13,6 +13,1198 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Ratetransitionhistory')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Aurea",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "GAS BILLING/SQL Sources"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ProductID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RateID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "LDCCode",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PlanType",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "TDSPTemplateID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Description",
+						"type": "varchar"
+					},
+					{
+						"name": "BeginDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "EndDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CustType",
+						"type": "varchar"
+					},
+					{
+						"name": "Graduated",
+						"type": "char"
+					},
+					{
+						"name": "RangeTier1",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RangeTier2",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SortOrder",
+						"type": "tinyint",
+						"precision": 3
+					},
+					{
+						"name": "ActiveFlag",
+						"type": "bit"
+					},
+					{
+						"name": "Uplift",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 9
+					},
+					{
+						"name": "CSATDSPTemplateID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CAATDSPTemplateID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PriceDescription",
+						"type": "varchar"
+					},
+					{
+						"name": "MarketingCode",
+						"type": "varchar"
+					},
+					{
+						"name": "RateTypeID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ConsUnitID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Default",
+						"type": "bit"
+					},
+					{
+						"name": "DivisionCode",
+						"type": "varchar"
+					},
+					{
+						"name": "RateDescription",
+						"type": "varchar"
+					},
+					{
+						"name": "ServiceType",
+						"type": "varchar"
+					},
+					{
+						"name": "CSPId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "TermsId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RolloverProductId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CommissionId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CommissionAmt",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 9
+					},
+					{
+						"name": "CancelFeeId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "MonthlyChargeId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ProductCode",
+						"type": "varchar"
+					},
+					{
+						"name": "RatePackageId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ProductName",
+						"type": "varchar"
+					},
+					{
+						"name": "TermDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "DiscountTypeId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DiscountAmount",
+						"type": "decimal",
+						"precision": 19,
+						"scale": 8
+					},
+					{
+						"name": "ProductZoneID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "IsGreen",
+						"type": "bit"
+					},
+					{
+						"name": "IsBestChoice",
+						"type": "bit"
+					},
+					{
+						"name": "ActiveEnrollmentFlag",
+						"type": "bit"
+					},
+					{
+						"name": "CreditScoreThreshold",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "DepositAmount",
+						"type": "smallmoney",
+						"precision": 10,
+						"scale": 4
+					},
+					{
+						"name": "Incentives",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RateTransitionHistory"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Ratetransitionhistory_parquet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adl_nextstar_billing",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "GAS BILLING/Aurea_export_parquet_files"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Ratetransitionhistory",
+						"folderPath": "parquet-aurea-raw",
+						"container": "aurea-pipelines"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SecUser')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Aurea",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "GAS BILLING/SQL Sources"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "UserID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ClientID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UserIdentifier",
+						"type": "uniqueidentifier"
+					},
+					{
+						"name": "UserLogin",
+						"type": "varchar"
+					},
+					{
+						"name": "UserPassword",
+						"type": "varchar"
+					},
+					{
+						"name": "Salt",
+						"type": "varchar"
+					},
+					{
+						"name": "FirstName",
+						"type": "varchar"
+					},
+					{
+						"name": "LastName",
+						"type": "varchar"
+					},
+					{
+						"name": "Email",
+						"type": "varchar"
+					},
+					{
+						"name": "LastChangeDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ChangePasswordFlag",
+						"type": "bit"
+					},
+					{
+						"name": "ReadOnlyFlag",
+						"type": "bit"
+					},
+					{
+						"name": "ActiveFlag",
+						"type": "bit"
+					},
+					{
+						"name": "CSPID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "InvoiceEmailNotifications",
+						"type": "bit"
+					},
+					{
+						"name": "LastInvoiceNotificationDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "LastLoginSuccess",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Failed",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DefaultUrl",
+						"type": "varchar"
+					},
+					{
+						"name": "EncryptionKey",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LastPasswordChangeDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "PasswordNeverExpires",
+						"type": "bit"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "SecUser"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SecUser_parquet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adl_nextstar_billing",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "GAS BILLING/Aurea_export_parquet_files"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SecUser",
+						"folderPath": "parquet-aurea-raw",
+						"container": "aurea-pipelines"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": [
+					{
+						"name": "ConsID",
+						"type": "INT32"
+					},
+					{
+						"name": "MeterID",
+						"type": "INT32"
+					},
+					{
+						"name": "InvoiceID",
+						"type": "INT32"
+					},
+					{
+						"name": "DateFrom",
+						"type": "INT96"
+					},
+					{
+						"name": "DateTo",
+						"type": "INT96"
+					},
+					{
+						"name": "IntervalTime",
+						"type": "UTF8"
+					},
+					{
+						"name": "BegRead",
+						"type": "DECIMAL",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "EndRead",
+						"type": "DECIMAL",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "SeqNo",
+						"type": "UTF8"
+					},
+					{
+						"name": "Status",
+						"type": "UTF8"
+					},
+					{
+						"name": "Note",
+						"type": "UTF8"
+					},
+					{
+						"name": "Type",
+						"type": "UTF8"
+					},
+					{
+						"name": "ReadingMth",
+						"type": "UTF8"
+					},
+					{
+						"name": "Source",
+						"type": "UTF8"
+					},
+					{
+						"name": "SourceID",
+						"type": "INT32"
+					},
+					{
+						"name": "RequestID",
+						"type": "INT32"
+					},
+					{
+						"name": "Processed",
+						"type": "UTF8"
+					},
+					{
+						"name": "ProcessDate",
+						"type": "INT96"
+					},
+					{
+						"name": "DoNotProcess",
+						"type": "UTF8"
+					},
+					{
+						"name": "DNPCode",
+						"type": "UTF8"
+					},
+					{
+						"name": "FinalFlag",
+						"type": "BOOLEAN"
+					},
+					{
+						"name": "IsBeginReadLDCEstimate",
+						"type": "BOOLEAN"
+					},
+					{
+						"name": "IsEndReadLDCEstimate",
+						"type": "BOOLEAN"
+					},
+					{
+						"name": "CreateDate",
+						"type": "INT96"
+					},
+					{
+						"name": "CreatedByID",
+						"type": "INT32"
+					},
+					{
+						"name": "migr_bill_batch_id",
+						"type": "INT32"
+					},
+					{
+						"name": "Migr_acct_no",
+						"type": "UTF8"
+					},
+					{
+						"name": "migr_service_Id",
+						"type": "UTF8"
+					},
+					{
+						"name": "migr_division_code",
+						"type": "UTF8"
+					},
+					{
+						"name": "migr_meter_number",
+						"type": "UTF8"
+					},
+					{
+						"name": "LastModifiedDate",
+						"type": "INT96"
+					},
+					{
+						"name": "ModifiedByID",
+						"type": "INT32"
+					},
+					{
+						"name": "ValidatedFlag",
+						"type": "BOOLEAN"
+					},
+					{
+						"name": "ValidatedDate",
+						"type": "INT96"
+					},
+					{
+						"name": "ThermFactor",
+						"type": "DECIMAL",
+						"precision": 18,
+						"scale": 6
+					},
+					{
+						"name": "DocumentDueDate",
+						"type": "INT96"
+					},
+					{
+						"name": "BillingTypeID",
+						"type": "INT32"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TDSPCharges')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Aurea",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "GAS BILLING/SQL Sources"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "TDSPChgsID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CSPDUNSID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Market810_Key",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "InvoiceNbr",
+						"type": "varchar"
+					},
+					{
+						"name": "ESIID",
+						"type": "varchar"
+					},
+					{
+						"name": "TDSPChargeCode",
+						"type": "varchar"
+					},
+					{
+						"name": "TDSPChargeAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "TDSPChargeUnit",
+						"type": "varchar"
+					},
+					{
+						"name": "TDSPChargeQty",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "TDSPRateClass",
+						"type": "varchar"
+					},
+					{
+						"name": "BeginServiceDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "EndServiceDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "InvoiceID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "InvoiceFlag",
+						"type": "bit"
+					},
+					{
+						"name": "ImportedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Processed",
+						"type": "char"
+					},
+					{
+						"name": "DoNotProcess",
+						"type": "char"
+					},
+					{
+						"name": "ProcessedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "InvoiceType",
+						"type": "varchar"
+					},
+					{
+						"name": "ProratedAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					}
+				],
+				"typeProperties": {
+					"schema": "DBO",
+					"table": "TDSPCharges"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TDSPCharges_parquet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adl_nextstar_billing",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "GAS BILLING/Aurea_export_parquet_files"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "TDSPCharges",
+						"folderPath": "parquet-aurea-raw",
+						"container": "aurea-pipelines"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": [
+					{
+						"name": "ConsID",
+						"type": "INT32"
+					},
+					{
+						"name": "MeterID",
+						"type": "INT32"
+					},
+					{
+						"name": "InvoiceID",
+						"type": "INT32"
+					},
+					{
+						"name": "DateFrom",
+						"type": "INT96"
+					},
+					{
+						"name": "DateTo",
+						"type": "INT96"
+					},
+					{
+						"name": "IntervalTime",
+						"type": "UTF8"
+					},
+					{
+						"name": "BegRead",
+						"type": "DECIMAL",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "EndRead",
+						"type": "DECIMAL",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "SeqNo",
+						"type": "UTF8"
+					},
+					{
+						"name": "Status",
+						"type": "UTF8"
+					},
+					{
+						"name": "Note",
+						"type": "UTF8"
+					},
+					{
+						"name": "Type",
+						"type": "UTF8"
+					},
+					{
+						"name": "ReadingMth",
+						"type": "UTF8"
+					},
+					{
+						"name": "Source",
+						"type": "UTF8"
+					},
+					{
+						"name": "SourceID",
+						"type": "INT32"
+					},
+					{
+						"name": "RequestID",
+						"type": "INT32"
+					},
+					{
+						"name": "Processed",
+						"type": "UTF8"
+					},
+					{
+						"name": "ProcessDate",
+						"type": "INT96"
+					},
+					{
+						"name": "DoNotProcess",
+						"type": "UTF8"
+					},
+					{
+						"name": "DNPCode",
+						"type": "UTF8"
+					},
+					{
+						"name": "FinalFlag",
+						"type": "BOOLEAN"
+					},
+					{
+						"name": "IsBeginReadLDCEstimate",
+						"type": "BOOLEAN"
+					},
+					{
+						"name": "IsEndReadLDCEstimate",
+						"type": "BOOLEAN"
+					},
+					{
+						"name": "CreateDate",
+						"type": "INT96"
+					},
+					{
+						"name": "CreatedByID",
+						"type": "INT32"
+					},
+					{
+						"name": "migr_bill_batch_id",
+						"type": "INT32"
+					},
+					{
+						"name": "Migr_acct_no",
+						"type": "UTF8"
+					},
+					{
+						"name": "migr_service_Id",
+						"type": "UTF8"
+					},
+					{
+						"name": "migr_division_code",
+						"type": "UTF8"
+					},
+					{
+						"name": "migr_meter_number",
+						"type": "UTF8"
+					},
+					{
+						"name": "LastModifiedDate",
+						"type": "INT96"
+					},
+					{
+						"name": "ModifiedByID",
+						"type": "INT32"
+					},
+					{
+						"name": "ValidatedFlag",
+						"type": "BOOLEAN"
+					},
+					{
+						"name": "ValidatedDate",
+						"type": "INT96"
+					},
+					{
+						"name": "ThermFactor",
+						"type": "DECIMAL",
+						"precision": 18,
+						"scale": 6
+					},
+					{
+						"name": "DocumentDueDate",
+						"type": "INT96"
+					},
+					{
+						"name": "BillingTypeID",
+						"type": "INT32"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TDSPInvoice')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Aurea",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "GAS BILLING/SQL Sources"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "TDSPInvoiceID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RequestID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "InvoiceID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PurposeCode",
+						"type": "varchar"
+					},
+					{
+						"name": "ReleaseNo",
+						"type": "varchar"
+					},
+					{
+						"name": "TransactionTypeCode",
+						"type": "varchar"
+					},
+					{
+						"name": "OriginalInvoiceNo",
+						"type": "varchar"
+					},
+					{
+						"name": "TotalAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "TaxAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "DueDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "DateFrom",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "DateTo",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "BulkInsertKey",
+						"type": "uniqueidentifier"
+					}
+				],
+				"typeProperties": {
+					"table": "TDSPInvoice"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TDSPInvoice_parquet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adl_nextstar_billing",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "GAS BILLING/Aurea_export_parquet_files"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "TDSPInvoice",
+						"folderPath": "parquet-aurea-raw",
+						"container": "aurea-pipelines"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": [
+					{
+						"name": "ConsID",
+						"type": "INT32"
+					},
+					{
+						"name": "MeterID",
+						"type": "INT32"
+					},
+					{
+						"name": "InvoiceID",
+						"type": "INT32"
+					},
+					{
+						"name": "DateFrom",
+						"type": "INT96"
+					},
+					{
+						"name": "DateTo",
+						"type": "INT96"
+					},
+					{
+						"name": "IntervalTime",
+						"type": "UTF8"
+					},
+					{
+						"name": "BegRead",
+						"type": "DECIMAL",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "EndRead",
+						"type": "DECIMAL",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "SeqNo",
+						"type": "UTF8"
+					},
+					{
+						"name": "Status",
+						"type": "UTF8"
+					},
+					{
+						"name": "Note",
+						"type": "UTF8"
+					},
+					{
+						"name": "Type",
+						"type": "UTF8"
+					},
+					{
+						"name": "ReadingMth",
+						"type": "UTF8"
+					},
+					{
+						"name": "Source",
+						"type": "UTF8"
+					},
+					{
+						"name": "SourceID",
+						"type": "INT32"
+					},
+					{
+						"name": "RequestID",
+						"type": "INT32"
+					},
+					{
+						"name": "Processed",
+						"type": "UTF8"
+					},
+					{
+						"name": "ProcessDate",
+						"type": "INT96"
+					},
+					{
+						"name": "DoNotProcess",
+						"type": "UTF8"
+					},
+					{
+						"name": "DNPCode",
+						"type": "UTF8"
+					},
+					{
+						"name": "FinalFlag",
+						"type": "BOOLEAN"
+					},
+					{
+						"name": "IsBeginReadLDCEstimate",
+						"type": "BOOLEAN"
+					},
+					{
+						"name": "IsEndReadLDCEstimate",
+						"type": "BOOLEAN"
+					},
+					{
+						"name": "CreateDate",
+						"type": "INT96"
+					},
+					{
+						"name": "CreatedByID",
+						"type": "INT32"
+					},
+					{
+						"name": "migr_bill_batch_id",
+						"type": "INT32"
+					},
+					{
+						"name": "Migr_acct_no",
+						"type": "UTF8"
+					},
+					{
+						"name": "migr_service_Id",
+						"type": "UTF8"
+					},
+					{
+						"name": "migr_division_code",
+						"type": "UTF8"
+					},
+					{
+						"name": "migr_meter_number",
+						"type": "UTF8"
+					},
+					{
+						"name": "LastModifiedDate",
+						"type": "INT96"
+					},
+					{
+						"name": "ModifiedByID",
+						"type": "INT32"
+					},
+					{
+						"name": "ValidatedFlag",
+						"type": "BOOLEAN"
+					},
+					{
+						"name": "ValidatedDate",
+						"type": "INT96"
+					},
+					{
+						"name": "ThermFactor",
+						"type": "DECIMAL",
+						"precision": 18,
+						"scale": 6
+					},
+					{
+						"name": "DocumentDueDate",
+						"type": "INT96"
+					},
+					{
+						"name": "BillingTypeID",
+						"type": "INT32"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/UNITOFMEASURE')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "dev2core",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Oracle Sources"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AEPE_COMMONS",
+					"table": "UNITOFMEASURE"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/UNITOFMEASURE_parquet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adl_nextstar_billing",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "unitofmeasure",
+						"folderPath": "parquet-nextstar-raw",
+						"container": "nextstar"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/USAGEALLOWEDTHRESHOLDFACTOR')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -122,33 +1314,6 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": "energyhourlyusagedetail",
-						"folderPath": "parquet-nextstar-raw",
-						"container": "nexstar"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/energymonthlyservicepoint_parquet')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "adl_nextstar_billing",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "energymonthlyservicepoint",
 						"folderPath": "parquet-nextstar-raw",
 						"container": "nexstar"
 					},
@@ -686,2316 +1851,9 @@
 				"annotations": [],
 				"lastPublishTime": "2022-12-02T19:15:07Z"
 			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Aurea_parquet_extract')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Consumption",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Consumption",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Consumption_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "ConsumptionDetail",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Consumption",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Consumptiondetail",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "ConsumptionDetail_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Invoice",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "ConsumptionDetail",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Invoice",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Invoice_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "InvoiceDetail",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Invoice",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "InvoiceDetail",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "InvoiceDetail_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "SpecialCharges",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "InvoiceDetail",
-								"dependencyConditions": [
-									"Skipped"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "InvoiceSpecialCharges",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "InvoiceSpecialCharges_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "InvoiceTax",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "SpecialCharges",
-								"dependencyConditions": [
-									"Skipped"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "InvoiceTax",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "InvoiceTax_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "TDSInvoice",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "InvoiceTax",
-								"dependencyConditions": [
-									"Skipped"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "TDSPInvoice",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "TDSPInvoice_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "TDSCharges",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "TDSInvoice",
-								"dependencyConditions": [
-									"Skipped"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "TDSPCharges",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "TDSPCharges_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "AlertQueue",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "TDSCharges",
-								"dependencyConditions": [
-									"Skipped"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "AlertQueue",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "AlertQueue_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "customer",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "AlertQueue",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Customer",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Customer_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": [],
-				"lastPublishTime": "2022-11-14T13:58:50Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Invoice_mongo_upsert')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "JsonSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"wildcardFileName": "?art*",
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "JsonReadSettings"
-								}
-							},
-							"sink": {
-								"type": "MongoDbAtlasSink",
-								"writeBatchTimeout": "02:30:00",
-								"writeBehavior": "upsert"
-							},
-							"enableStaging": false,
-							"parallelCopies": 32,
-							"dataIntegrationUnits": 32
-						},
-						"inputs": [
-							{
-								"referenceName": "Invoice_JSON",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Invoice_mongo",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Delete1",
-						"type": "Delete",
-						"dependsOn": [
-							{
-								"activity": "Copy data1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataset": {
-								"referenceName": "Invoice_JSON",
-								"type": "DatasetReference",
-								"parameters": {}
-							},
-							"logStorageSettings": {
-								"linkedServiceName": {
-									"referenceName": "adl_nextstar_billing",
-									"type": "LinkedServiceReference"
-								},
-								"path": "aurea-pipelines"
-							},
-							"enableLogging": true,
-							"storeSettings": {
-								"type": "AzureBlobStorageReadSettings",
-								"recursive": true,
-								"wildcardFileName": "*",
-								"enablePartitionDiscovery": false
-							}
-						}
-					}
-				],
-				"concurrency": 50,
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": [],
-				"lastPublishTime": "2022-11-28T17:30:07Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Nextstar_extraction_Jflores')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "DeliveryBalance",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"convertDecimalToInteger": false,
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings",
-									"maxConcurrentConnections": 8,
-									"blockSizeInMB": 100
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "DeliveryBalance",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DELIVERYBALANCE_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "DeliveryChargeItem",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "DeliveryBalance",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"convertDecimalToInteger": false,
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "DeliveryChargeItemType",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DELIVERYCHARGEITEMTYPE_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "DeliveryChargeStatus",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "DeliveryMeterDetail",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"convertDecimalToInteger": false,
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "DeliveryChargeStatus",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DELIVERYCHARGESTATUS_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "DeliveryMeterDetail",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "DeliveryChargeItem",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"convertDecimalToInteger": false,
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "DeliveryMeterDetail",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DELIVERYMETERDETAIL_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "DeliveryServiceClassCategory",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "DeliveryChargeStatus",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"convertDecimalToInteger": false,
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "DeliveryServiceClassCategory",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DELIVERYSERVICECLASSSCATEGORY_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "FactorEstimatedDelivery",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "DeliveryServiceClassCategory",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"convertDecimalToInteger": false,
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "FactorEstimatedDelivery",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "FACTORESTIMATEDDELIVERY_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": [],
-				"lastPublishTime": "2022-12-02T22:07:20Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Nextstar_extraction_sdemichelis')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "BaseType",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"convertDecimalToInteger": false,
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "BASETYPE",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "BASETYPE_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "BillingInvoiceParameter",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "BaseType",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "BILLINGINVOICEPARAMETER",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "BILLINGINVOICEPARAMETER_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "unitofmeasure",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "BillingInvoiceParameter",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "UNITOFMEASURE",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "UNITOFMEASURE_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "accountproductservicepointdetail",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "unitofmeasure",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "UNITOFMEASURE",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "UNITOFMEASURE_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "energyusagestatus",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "accountproductservicepointdetail",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "ENERGYUSAGESTATUS",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "ENERGYUSAGESTATUS_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "energyusage",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "energyusagestatus",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "ENERGYUSAGE",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "ENERGYUSAGE_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "accountproduct",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "energyusage",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "ACCOUNTPRODUCT",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "ACCOUNTPRODUCT_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "accountproductagreement",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "accountproduct",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "ACCOUNTPRODUCT",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "ACCOUNTPRODUCTAGREEMENT_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": [],
-				"lastPublishTime": "2022-12-02T22:07:20Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Usage_mongo_upsert')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "JsonSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"wildcardFileName": "?art*",
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "JsonReadSettings"
-								}
-							},
-							"sink": {
-								"type": "MongoDbAtlasSink",
-								"writeBatchTimeout": "02:30:00",
-								"writeBehavior": "upsert"
-							},
-							"enableStaging": false,
-							"parallelCopies": 32,
-							"dataIntegrationUnits": 32
-						},
-						"inputs": [
-							{
-								"referenceName": "Consumption_json",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "UsageGas_Mongo",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Delete1",
-						"type": "Delete",
-						"dependsOn": [
-							{
-								"activity": "Copy data1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataset": {
-								"referenceName": "Consumption_json",
-								"type": "DatasetReference",
-								"parameters": {}
-							},
-							"logStorageSettings": {
-								"linkedServiceName": {
-									"referenceName": "adl_nextstar_billing",
-									"type": "LinkedServiceReference"
-								},
-								"path": "aurea-pipelines"
-							},
-							"enableLogging": true,
-							"storeSettings": {
-								"type": "AzureBlobStorageReadSettings",
-								"recursive": true,
-								"wildcardFileName": "*",
-								"enablePartitionDiscovery": false
-							}
-						}
-					}
-				],
-				"concurrency": 50,
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": [],
-				"lastPublishTime": "2022-11-28T17:29:50Z"
-			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/UsageGas_Mongo')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/nexstar_data_copy')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "DAYLIGHTSAVINGTUME",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "DAYLIGHTSAVINGTIME",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "daylightsavingtime_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "ENERGYHOURLYUSAGEDETAIL",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "DAYLIGHTSAVINGTUME",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "ENERGYHOURLYUSAGEDETAIL",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "energyhourlyusagedetail_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "ENERGYMONTHLYSERVICEPOINT",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "ENERGYHOURLYUSAGEDETAIL",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "ENERGYMONTHLYSERVICEPOINT",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "energymonthlyservicepoint_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "ESTIMATEDUSAGE",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "ENERGYMONTHLYSERVICEPOINT",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "ESTIMATEDUSAGE",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "estimatedusage_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "METERENERGYMONTHLYUSAGE",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "ESTIMATEDUSAGE",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "METERENERGYMONTHLYUSAGE",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "meterenergymonthlyusage_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "USAGEALLOWEDTHRESHOLDFACTOR",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "METERENERGYMONTHLYUSAGE",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "USAGEALLOWEDTHRESHOLDFACTOR",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "usageallowedthresholdfactor_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "USAGEBEHAVIORRULES",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "USAGEALLOWEDTHRESHOLDFACTOR",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "USAGEBEHAVIORRULES",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "usagebehaviorrules_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/daylightsavingtime_parquet')]",
-				"[concat(variables('factoryId'), '/datasets/energyhourlyusagedetail_parquet')]",
-				"[concat(variables('factoryId'), '/datasets/energymonthlyservicepoint_parquet')]",
-				"[concat(variables('factoryId'), '/datasets/estimatedusage_parquet')]",
-				"[concat(variables('factoryId'), '/datasets/meterenergymonthlyusage_parquet')]",
-				"[concat(variables('factoryId'), '/datasets/USAGEALLOWEDTHRESHOLDFACTOR')]",
-				"[concat(variables('factoryId'), '/datasets/usageallowedthresholdfactor_parquet')]",
-				"[concat(variables('factoryId'), '/datasets/USAGEBEHAVIORRULES')]",
-				"[concat(variables('factoryId'), '/datasets/usagebehaviorrules_parquet')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
-			"type": "Microsoft.DataFactory/factories/dataflows",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "MappingDataFlow",
-				"typeProperties": {
-					"sources": [
-						{
-							"dataset": {
-								"referenceName": "ConsumptionDetail_parquet",
-								"type": "DatasetReference"
-							},
-							"name": "cons"
-						},
-						{
-							"dataset": {
-								"referenceName": "Consumption_parquet",
-								"type": "DatasetReference"
-							},
-							"name": "source1"
-						}
-					],
-					"sinks": [
-						{
-							"dataset": {
-								"referenceName": "Consumption_json",
-								"type": "DatasetReference"
-							},
-							"name": "sink1"
-						}
-					],
-					"transformations": [
-						{
-							"name": "select1"
-						},
-						{
-							"name": "derivedColumn1"
-						},
-						{
-							"name": "select2"
-						},
-						{
-							"name": "select3"
-						},
-						{
-							"name": "join1"
-						}
-					],
-					"scriptLines": [
-						"source(output(",
-						"          ConsDetID as integer,",
-						"          ConsID as integer,",
-						"          ConsDetType as string,",
-						"          ConsDetQty as decimal(18,4),",
-						"          ConsUnitID as integer,",
-						"          ConsMultiplier as decimal(9,2),",
-						"          Source as string,",
-						"          SourceID as integer,",
-						"          MeterRegisterId as integer,",
-						"          CreateDate as timestamp,",
-						"          LastModifiedDate as timestamp,",
-						"          CreatedByID as integer,",
-						"          ModifiedByID as integer",
-						"     ),",
-						"     allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     limit: 1000,",
-						"     ignoreNoFilesFound: false,",
-						"     format: 'parquet') ~> cons",
-						"source(output(",
-						"          ConsID as integer,",
-						"          MeterID as integer,",
-						"          InvoiceID as integer,",
-						"          DateFrom as timestamp,",
-						"          DateTo as timestamp,",
-						"          IntervalTime as string,",
-						"          BegRead as decimal(18,4),",
-						"          EndRead as decimal(18,4),",
-						"          SeqNo as string,",
-						"          Status as string,",
-						"          Note as string,",
-						"          Type as string,",
-						"          ReadingMth as string,",
-						"          Source as string,",
-						"          SourceID as integer,",
-						"          RequestID as integer,",
-						"          Processed as string,",
-						"          ProcessDate as timestamp,",
-						"          DoNotProcess as string,",
-						"          DNPCode as string,",
-						"          FinalFlag as boolean,",
-						"          IsBeginReadLDCEstimate as boolean,",
-						"          IsEndReadLDCEstimate as boolean,",
-						"          CreateDate as timestamp,",
-						"          CreatedByID as integer,",
-						"          migr_bill_batch_id as integer,",
-						"          Migr_acct_no as string,",
-						"          migr_service_Id as string,",
-						"          migr_division_code as string,",
-						"          migr_meter_number as string,",
-						"          LastModifiedDate as timestamp,",
-						"          ModifiedByID as integer,",
-						"          ValidatedFlag as boolean,",
-						"          ValidatedDate as timestamp,",
-						"          ThermFactor as decimal(18,6),",
-						"          DocumentDueDate as timestamp,",
-						"          BillingTypeID as integer",
-						"     ),",
-						"     allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     limit: 1000,",
-						"     ignoreNoFilesFound: false,",
-						"     format: 'parquet') ~> source1",
-						"cons select(mapColumn(",
-						"          ConsID,",
-						"          ConsDetID,",
-						"          ConsDetType,",
-						"          ConsDetQty,",
-						"          ConsUnitID",
-						"     ),",
-						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> select1",
-						"select1 derive(Detail = @(ConsDetID=ConsDetID,",
-						"          ConsDetQty=ConsDetQty,",
-						"          ConsDetType=ConsDetType,",
-						"          ConsUnitID=ConsUnitID)) ~> derivedColumn1",
-						"derivedColumn1 select(mapColumn(",
-						"          ConsID,",
-						"          Detail",
-						"     ),",
-						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> select2",
-						"source1 select(mapColumn(",
-						"          ConsID,",
-						"          MeterID,",
-						"          InvoiceID,",
-						"          DateFrom,",
-						"          DateTo,",
-						"          IntervalTime,",
-						"          BegRead,",
-						"          EndRead,",
-						"          SeqNo,",
-						"          Status,",
-						"          Type,",
-						"          ReadingMth,",
-						"          Source,",
-						"          SourceID,",
-						"          RequestID,",
-						"          Processed,",
-						"          BillingTypeID",
-						"     ),",
-						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> select3",
-						"select3, select2 join(select3@ConsID == select2@ConsID,",
-						"     joinType:'left',",
-						"     matchType:'exact',",
-						"     ignoreSpaces: false,",
-						"     broadcast: 'auto')~> join1",
-						"join1 sink(allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     truncate: true,",
-						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true,",
-						"     partitionBy('hash', 1)) ~> sink1"
-					]
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Json parser')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Data flow1",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "dataflow1",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"cons": {},
-									"source1": {},
-									"sink1": {}
-								}
-							},
-							"staging": {},
-							"integrationRuntime": {
-								"referenceName": "IR-Dev",
-								"type": "IntegrationRuntimeReference"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": [],
-				"lastPublishTime": "2022-11-12T01:47:27Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/dataflow1')]"
+				"[concat(variables('factoryId'), '/datasets/Ratetransitionhistory')]",
+				"[concat(variables('factoryId'), '/datasets/Ratetransitionhistory_parquet')]"
 			]
 		}
 	]
