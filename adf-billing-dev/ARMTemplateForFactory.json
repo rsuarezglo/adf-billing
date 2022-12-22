@@ -12681,36 +12681,6 @@
 				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_plopez')]",
 				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_sdemichelis')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/trigger_report_nextstar')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "Extraction_nextstar_all",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Minute",
-						"interval": 14,
-						"startTime": "2022-12-22T14:00:00",
-						"timeZone": "Eastern Standard Time"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Extraction_nextstar_all')]"
-			]
 		}
 	]
 }
