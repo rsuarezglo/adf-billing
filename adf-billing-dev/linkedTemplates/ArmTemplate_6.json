@@ -3190,6 +3190,106 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/dataflows/dataflow1')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Extraction_nextstar_all')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Nextstar_extraction_Jflores",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Nextstar_extraction_Jflores",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "Nextstar_extraction_Jzegarra",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Nextstar_extraction_Jflores",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Nextstar_extraction_Jzegarra",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "Nextstar_extraction_plopez",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Nextstar_extraction_Jzegarra",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Nextstar_extraction_plopez",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "Nextstar_extraction_sdemichelis",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Nextstar_extraction_plopez",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Nextstar_extraction_sdemichelis",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "Extraction Nextstar"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_Jflores')]",
+				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_Jzegarra')]",
+				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_plopez')]",
+				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_sdemichelis')]"
+			]
 		}
 	]
 }
