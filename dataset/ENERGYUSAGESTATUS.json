@@ -1,5 +1,5 @@
 {
-	"name": "ENERGYMONTHLYSERVICEPOINT",
+	"name": "ENERGYUSAGESTATUS",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "dev2core",
@@ -12,8 +12,8 @@
 		"type": "OracleTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "AEPE_BILLING",
-			"table": "ENERGYMONTHLYSERVICEPOINT"
+			"schema": "AEPE_USAGE",
+			"table": "ENERGYUSAGESTATUS"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"

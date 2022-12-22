@@ -1,5 +1,5 @@
 {
-	"name": "ENERGYMONTHLYSERVICEPOINT",
+	"name": "BILLINGINVOICEPARAMETER",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "dev2core",
@@ -13,7 +13,7 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": "AEPE_BILLING",
-			"table": "ENERGYMONTHLYSERVICEPOINT"
+			"table": "BILLINGINVOICEPARAMETER"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"

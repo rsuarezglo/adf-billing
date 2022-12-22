@@ -2,11 +2,11 @@
 	"name": "ACCOUNTPRODUCT",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "Bsecore01p",
+			"referenceName": "dev2core",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
-			"name": "ELECTRICAL BILLING/Oracle sources"
+			"name": "ELECTRICAL BILLING/Oracle Sources"
 		},
 		"annotations": [],
 		"type": "OracleTable",
@@ -15,6 +15,5 @@
 			"schema": "AEPE_PROVISIONING",
 			"table": "ACCOUNTPRODUCT"
 		}
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+	}
 }
