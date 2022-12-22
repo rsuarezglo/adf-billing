@@ -261,7 +261,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Oracle sources"
+					"name": "ELECTRICAL BILLING/Oracle Sources"
 				},
 				"annotations": [],
 				"type": "OracleTable",
@@ -285,7 +285,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Nextstar_export_parquet_files"
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
 				},
 				"annotations": [],
 				"type": "Parquet",
@@ -314,7 +314,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Oracle sources"
+					"name": "ELECTRICAL BILLING/Oracle Sources"
 				},
 				"annotations": [],
 				"type": "OracleTable",
@@ -338,7 +338,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Nextstar_export_parquet_files"
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
 				},
 				"annotations": [],
 				"type": "Parquet",

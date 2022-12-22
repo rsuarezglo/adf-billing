@@ -1267,13 +1267,13 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Nextstar_extraction')]",
+			"name": "[concat(parameters('factoryName'), '/Nextstar_extraction_Jflores')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"activities": [
 					{
-						"name": "AccountProduct",
+						"name": "DeliveryBalance",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -1306,14 +1306,314 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "ACCOUNTPRODUCT",
+								"referenceName": "DeliveryBalance",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "ACCOUNTPRODUCT_parquet",
+								"referenceName": "DELIVERYBALANCE_parquet",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "DeliveryChargeItem",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "DeliveryBalance",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "OracleSource",
+								"partitionOption": "None",
+								"convertDecimalToInteger": false,
+								"queryTimeout": "02:00:00"
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DeliveryChargeItemType",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DELIVERYCHARGEITEMTYPE_parquet",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "DeliveryChargeStatus",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "DeliveryMeterDetail",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "OracleSource",
+								"partitionOption": "None",
+								"convertDecimalToInteger": false,
+								"queryTimeout": "02:00:00"
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DeliveryChargeStatus",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DELIVERYCHARGESTATUS_parquet",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "DeliveryMeterDetail",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "DeliveryChargeItem",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "OracleSource",
+								"partitionOption": "None",
+								"convertDecimalToInteger": false,
+								"queryTimeout": "02:00:00"
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DeliveryMeterDetail",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DELIVERYMETERDETAIL_parquet",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "DeliveryServiceClassCategory",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "DeliveryChargeStatus",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "OracleSource",
+								"partitionOption": "None",
+								"convertDecimalToInteger": false,
+								"queryTimeout": "02:00:00"
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DeliveryServiceClassCategory",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DELIVERYSERVICECLASSSCATEGORY_parquet",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "FactorEstimatedDelivery",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "DeliveryServiceClassCategory",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "OracleSource",
+								"partitionOption": "None",
+								"convertDecimalToInteger": false,
+								"queryTimeout": "02:00:00"
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "FactorEstimatedDelivery",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "FACTORESTIMATEDDELIVERY_parquet",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1328,12 +1628,22 @@
 				"lastPublishTime": "2022-12-02T22:07:20Z"
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/ACCOUNTPRODUCT')]",
-				"[concat(variables('factoryId'), '/datasets/ACCOUNTPRODUCT_parquet')]"
+				"[concat(variables('factoryId'), '/datasets/DeliveryBalance')]",
+				"[concat(variables('factoryId'), '/datasets/DELIVERYBALANCE_parquet')]",
+				"[concat(variables('factoryId'), '/datasets/DeliveryChargeItemType')]",
+				"[concat(variables('factoryId'), '/datasets/DELIVERYCHARGEITEMTYPE_parquet')]",
+				"[concat(variables('factoryId'), '/datasets/DeliveryChargeStatus')]",
+				"[concat(variables('factoryId'), '/datasets/DELIVERYCHARGESTATUS_parquet')]",
+				"[concat(variables('factoryId'), '/datasets/DeliveryMeterDetail')]",
+				"[concat(variables('factoryId'), '/datasets/DELIVERYMETERDETAIL_parquet')]",
+				"[concat(variables('factoryId'), '/datasets/DeliveryServiceClassCategory')]",
+				"[concat(variables('factoryId'), '/datasets/DELIVERYSERVICECLASSSCATEGORY_parquet')]",
+				"[concat(variables('factoryId'), '/datasets/FactorEstimatedDelivery')]",
+				"[concat(variables('factoryId'), '/datasets/FACTORESTIMATEDDELIVERY_parquet')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Nextstar_extraction_7_tables')]",
+			"name": "[concat(parameters('factoryName'), '/Nextstar_extraction_sdemichelis')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -2409,7 +2719,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Oracle sources"
+					"name": "ELECTRICAL BILLING/Oracle Sources"
 				},
 				"annotations": [],
 				"type": "OracleTable",
@@ -2433,7 +2743,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Nextstar_export_parquet_files"
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
 				},
 				"annotations": [],
 				"type": "Parquet",
@@ -2462,7 +2772,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Oracle sources"
+					"name": "ELECTRICAL BILLING/Oracle Sources"
 				},
 				"annotations": [],
 				"type": "OracleTable",
@@ -2486,7 +2796,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Nextstar_export_parquet_files"
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
 				},
 				"annotations": [],
 				"type": "Parquet",
@@ -3150,7 +3460,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Oracle sources"
+					"name": "ELECTRICAL BILLING/Oracle Sources"
 				},
 				"annotations": [],
 				"type": "OracleTable",
@@ -3174,7 +3484,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Nextstar_export_parquet_files"
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
 				},
 				"annotations": [],
 				"type": "Parquet",
@@ -3203,7 +3513,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Oracle sources"
+					"name": "ELECTRICAL BILLING/Oracle Sources"
 				},
 				"annotations": [],
 				"type": "OracleTable",
@@ -3227,7 +3537,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Nextstar_export_parquet_files"
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
 				},
 				"annotations": [],
 				"type": "Parquet",
@@ -4416,6 +4726,271 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DELIVERYBALANCE_parquet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adl_nextstar_billing",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "deliverybalance",
+						"folderPath": "parquet-nextstar-raw",
+						"container": "nextstar"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/adl_nextstar_billing')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DELIVERYCHARGEITEMTYPE_parquet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adl_nextstar_billing",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "deliverychargeitemtype",
+						"folderPath": "parquet-nextstar-raw",
+						"container": "nextstar"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/adl_nextstar_billing')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DELIVERYCHARGESTATUS_parquet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adl_nextstar_billing",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "deliverychargestatus",
+						"folderPath": "parquet-nextstar-raw",
+						"container": "nextstar"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/adl_nextstar_billing')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DELIVERYMETERDETAIL_parquet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adl_nextstar_billing",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "deliverymeterdetail",
+						"folderPath": "parquet-nextstar-raw",
+						"container": "nextstar"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/adl_nextstar_billing')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DELIVERYSERVICECLASSSCATEGORY_parquet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adl_nextstar_billing",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "deliveryserviceclasscategory",
+						"folderPath": "parquet-nextstar-raw",
+						"container": "nextstar"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/adl_nextstar_billing')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DeliveryBalance')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "dev2core",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Oracle Sources"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AEPE_BILLING",
+					"table": "DELIVERYBALANCE"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/dev2core')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DeliveryChargeItemType')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "dev2core",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Oracle Sources"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AEPE_BILLING",
+					"table": "DELIVERYCHARGEITEMTYPE"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/dev2core')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DeliveryChargeStatus')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "dev2core",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Oracle Sources"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AEPE_BILLING",
+					"table": "DELIVERYCHARGESTATUS"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/dev2core')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DeliveryMeterDetail')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "dev2core",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Oracle Sources"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AEPE_BILLING",
+					"table": "DELIVERYMETERDETAIL"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/dev2core')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DeliveryServiceClassCategory')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "dev2core",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Oracle Sources"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AEPE_BILLING",
+					"table": "DELIVERYSERVICECLASSCATEGORY"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/dev2core')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ENERGYHOURLYUSAGEDETAIL')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -4473,7 +5048,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Oracle sources"
+					"name": "ELECTRICAL BILLING/Oracle Sources"
 				},
 				"annotations": [],
 				"type": "OracleTable",
@@ -4497,7 +5072,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Oracle sources"
+					"name": "ELECTRICAL BILLING/Oracle Sources"
 				},
 				"annotations": [],
 				"type": "OracleTable",
@@ -4521,7 +5096,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Nextstar_export_parquet_files"
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
 				},
 				"annotations": [],
 				"type": "Parquet",
@@ -4550,7 +5125,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Nextstar_export_parquet_files"
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
 				},
 				"annotations": [],
 				"type": "Parquet",
@@ -4587,6 +5162,59 @@
 				"typeProperties": {
 					"schema": "AEPE_BILLING",
 					"table": "ESTIMATEDUSAGE"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/dev2core')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FACTORESTIMATEDDELIVERY_parquet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adl_nextstar_billing",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "factorestimateddelivery",
+						"folderPath": "parquet-nextstar-raw",
+						"container": "nextstar"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/adl_nextstar_billing')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FactorEstimatedDelivery')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "dev2core",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Oracle Sources"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AEPE_BILLING",
+					"table": "FACTORSESTIMATEDDELIVERY"
 				}
 			},
 			"dependsOn": [
@@ -10147,7 +10775,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Oracle sources"
+					"name": "ELECTRICAL BILLING/Oracle Sources"
 				},
 				"annotations": [],
 				"type": "OracleTable",
@@ -10171,7 +10799,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/ELECTRICAL BILLING/Nextstar_export_parquet_files"
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
 				},
 				"annotations": [],
 				"type": "Parquet",
