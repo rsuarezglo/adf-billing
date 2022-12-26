@@ -18,6 +18,7 @@
 					"source": {
 						"type": "OracleSource",
 						"partitionOption": "None",
+						"convertDecimalToInteger": false,
 						"queryTimeout": "02:00:00"
 					},
 					"sink": {
@@ -74,8 +75,14 @@
 				"typeProperties": {
 					"source": {
 						"type": "OracleSource",
-						"partitionOption": "None",
-						"queryTimeout": "02:00:00"
+						"partitionOption": "DynamicRange",
+						"partitionSettings": {
+							"partitionColumnName": "METERENERGYMONTHLYUSAGEID",
+							"partitionUpperBound": "",
+							"partitionLowerBound": ""
+						},
+						"convertDecimalToInteger": false,
+						"queryTimeout": "24:00:00"
 					},
 					"sink": {
 						"type": "ParquetSink",
