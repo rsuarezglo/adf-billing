@@ -1616,7 +1616,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/Oracle sources"
+					"name": "ELECTRICAL BILLING/Oracle Sources"
 				},
 				"annotations": [],
 				"type": "OracleTable",
@@ -1638,7 +1638,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/Oracle sources"
+					"name": "ELECTRICAL BILLING/Oracle Sources"
 				},
 				"annotations": [],
 				"type": "OracleTable",
@@ -1687,7 +1687,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/Oracle sources"
+					"name": "ELECTRICAL BILLING/Oracle Sources"
 				},
 				"annotations": [],
 				"type": "OracleTable",

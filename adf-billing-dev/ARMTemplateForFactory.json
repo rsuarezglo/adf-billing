@@ -1106,6 +1106,106 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Extraction_nextstar_all')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Nextstar_extraction_Jflores",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Nextstar_extraction_Jflores",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "Nextstar_extraction_Jzegarra",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Nextstar_extraction_Jflores",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Nextstar_extraction_Jzegarra",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "Nextstar_extraction_plopez",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Nextstar_extraction_Jzegarra",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Nextstar_extraction_plopez",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "Nextstar_extraction_sdemichelis",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Nextstar_extraction_plopez",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Nextstar_extraction_sdemichelis",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "Extraction Nextstar"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_Jflores')]",
+				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_Jzegarra')]",
+				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_plopez')]",
+				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_sdemichelis')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Invoice_mongo_upsert')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -2155,117 +2255,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Usage_mongo_upsert')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "JsonSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"wildcardFileName": "?art*",
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "JsonReadSettings"
-								}
-							},
-							"sink": {
-								"type": "MongoDbAtlasSink",
-								"writeBatchTimeout": "02:30:00",
-								"writeBehavior": "upsert"
-							},
-							"enableStaging": false,
-							"parallelCopies": 32,
-							"dataIntegrationUnits": 32
-						},
-						"inputs": [
-							{
-								"referenceName": "Consumption_json",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "UsageGas_Mongo",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Delete1",
-						"type": "Delete",
-						"dependsOn": [
-							{
-								"activity": "Copy data1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataset": {
-								"referenceName": "Consumption_json",
-								"type": "DatasetReference",
-								"parameters": {}
-							},
-							"logStorageSettings": {
-								"linkedServiceName": {
-									"referenceName": "adl_nextstar_billing",
-									"type": "LinkedServiceReference"
-								},
-								"path": "aurea-pipelines"
-							},
-							"enableLogging": true,
-							"storeSettings": {
-								"type": "AzureBlobStorageReadSettings",
-								"recursive": true,
-								"wildcardFileName": "*",
-								"enablePartitionDiscovery": false
-							}
-						}
-					}
-				],
-				"concurrency": 50,
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": [],
-				"lastPublishTime": "2022-11-28T17:29:50Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/Consumption_json')]",
-				"[concat(variables('factoryId'), '/datasets/UsageGas_Mongo')]",
-				"[concat(variables('factoryId'), '/linkedServices/adl_nextstar_billing')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/Nextstar_extraction_plopez')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -3164,6 +3153,7 @@
 							"source": {
 								"type": "OracleSource",
 								"partitionOption": "None",
+								"convertDecimalToInteger": false,
 								"queryTimeout": "02:00:00"
 							},
 							"sink": {
@@ -3222,8 +3212,14 @@
 						"typeProperties": {
 							"source": {
 								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
+								"partitionOption": "DynamicRange",
+								"partitionSettings": {
+									"partitionColumnName": "METERENERGYMONTHLYUSAGEID",
+									"partitionUpperBound": "",
+									"partitionLowerBound": ""
+								},
+								"convertDecimalToInteger": false,
+								"queryTimeout": "24:00:00"
 							},
 							"sink": {
 								"type": "ParquetSink",
@@ -3579,6 +3575,117 @@
 				"[concat(variables('factoryId'), '/datasets/usageallowedthresholdfactor_parquet')]",
 				"[concat(variables('factoryId'), '/datasets/USAGEBEHAVIORRULES')]",
 				"[concat(variables('factoryId'), '/datasets/usagebehaviorrules_parquet')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Usage_mongo_upsert')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"wildcardFileName": "?art*",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"sink": {
+								"type": "MongoDbAtlasSink",
+								"writeBatchTimeout": "02:30:00",
+								"writeBehavior": "upsert"
+							},
+							"enableStaging": false,
+							"parallelCopies": 32,
+							"dataIntegrationUnits": 32
+						},
+						"inputs": [
+							{
+								"referenceName": "Consumption_json",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "UsageGas_Mongo",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Delete1",
+						"type": "Delete",
+						"dependsOn": [
+							{
+								"activity": "Copy data1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "Consumption_json",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"logStorageSettings": {
+								"linkedServiceName": {
+									"referenceName": "adl_nextstar_billing",
+									"type": "LinkedServiceReference"
+								},
+								"path": "aurea-pipelines"
+							},
+							"enableLogging": true,
+							"storeSettings": {
+								"type": "AzureBlobStorageReadSettings",
+								"recursive": true,
+								"wildcardFileName": "*",
+								"enablePartitionDiscovery": false
+							}
+						}
+					}
+				],
+				"concurrency": 50,
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2022-11-28T17:29:50Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Consumption_json')]",
+				"[concat(variables('factoryId'), '/datasets/UsageGas_Mongo')]",
+				"[concat(variables('factoryId'), '/linkedServices/adl_nextstar_billing')]"
 			]
 		},
 		{
@@ -5660,7 +5767,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/Oracle sources"
+					"name": "ELECTRICAL BILLING/Oracle Sources"
 				},
 				"annotations": [],
 				"type": "OracleTable",
@@ -5684,7 +5791,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/Oracle sources"
+					"name": "ELECTRICAL BILLING/Oracle Sources"
 				},
 				"annotations": [],
 				"type": "OracleTable",
@@ -5737,7 +5844,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/Oracle sources"
+					"name": "ELECTRICAL BILLING/Oracle Sources"
 				},
 				"annotations": [],
 				"type": "OracleTable",
@@ -5790,7 +5897,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "ELECTRICAL BILLING/Oracle sources"
+					"name": "ELECTRICAL BILLING/Oracle Sources"
 				},
 				"annotations": [],
 				"type": "OracleTable",
@@ -12583,103 +12690,79 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Extraction_nextstar_all')]",
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"activities": [
 					{
-						"name": "Nextstar_extraction_Jflores",
-						"type": "ExecutePipeline",
+						"name": "ENERGYHOURLYUSAGEDETAIL",
+						"type": "Copy",
 						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
 						"userProperties": [],
 						"typeProperties": {
-							"pipeline": {
-								"referenceName": "Nextstar_extraction_Jflores",
-								"type": "PipelineReference"
+							"source": {
+								"type": "OracleSource",
+								"partitionOption": "DynamicRange",
+								"partitionSettings": {
+									"partitionColumnName": "METERENERGYMONTHLYUSAGEID",
+									"partitionUpperBound": "",
+									"partitionLowerBound": ""
+								},
+								"convertDecimalToInteger": false,
+								"queryTimeout": "24:00:00"
 							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "Nextstar_extraction_Jzegarra",
-						"type": "ExecutePipeline",
-						"dependsOn": [
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
 							{
-								"activity": "Nextstar_extraction_Jflores",
-								"dependencyConditions": [
-									"Completed"
-								]
+								"referenceName": "ENERGYHOURLYUSAGEDETAIL",
+								"type": "DatasetReference",
+								"parameters": {}
 							}
 						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "Nextstar_extraction_Jzegarra",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "Nextstar_extraction_plopez",
-						"type": "ExecutePipeline",
-						"dependsOn": [
+						"outputs": [
 							{
-								"activity": "Nextstar_extraction_Jzegarra",
-								"dependencyConditions": [
-									"Completed"
-								]
+								"referenceName": "energyhourlyusagedetail_parquet",
+								"type": "DatasetReference",
+								"parameters": {}
 							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "Nextstar_extraction_plopez",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "Nextstar_extraction_sdemichelis",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "Nextstar_extraction_plopez",
-								"dependencyConditions": [
-									"Completed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "Nextstar_extraction_sdemichelis",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
+						]
 					}
 				],
 				"policy": {
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
 				},
-				"folder": {
-					"name": "Extraction Nextstar"
-				},
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_Jflores')]",
-				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_Jzegarra')]",
-				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_plopez')]",
-				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_sdemichelis')]"
+				"[concat(variables('factoryId'), '/datasets/ENERGYHOURLYUSAGEDETAIL')]",
+				"[concat(variables('factoryId'), '/datasets/energyhourlyusagedetail_parquet')]"
 			]
 		}
 	]
