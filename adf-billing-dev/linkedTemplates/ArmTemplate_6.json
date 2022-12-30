@@ -1551,7 +1551,7 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "ACCOUNTPRODUCT",
+								"referenceName": "ACCOUNTPRODUCTAGREEMENT",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -3156,7 +3156,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "ENERGYHOURLYUSAGEDETAIL",
+						"name": "accountproductagreement",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -3170,19 +3170,14 @@
 						"typeProperties": {
 							"source": {
 								"type": "OracleSource",
-								"partitionOption": "DynamicRange",
-								"partitionSettings": {
-									"partitionColumnName": "METERENERGYMONTHLYUSAGEID",
-									"partitionUpperBound": "",
-									"partitionLowerBound": ""
-								},
-								"convertDecimalToInteger": false,
-								"queryTimeout": "24:00:00"
+								"partitionOption": "None",
+								"queryTimeout": "02:00:00"
 							},
 							"sink": {
 								"type": "ParquetSink",
 								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
+									"type": "AzureBlobStorageWriteSettings",
+									"copyBehavior": "FlattenHierarchy"
 								},
 								"formatSettings": {
 									"type": "ParquetWriteSettings"
@@ -3200,14 +3195,14 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "ENERGYHOURLYUSAGEDETAIL",
+								"referenceName": "ACCOUNTPRODUCTAGREEMENT",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "energyhourlyusagedetail_parquet",
+								"referenceName": "ACCOUNTPRODUCTAGREEMENT_parquet",
 								"type": "DatasetReference",
 								"parameters": {}
 							}

@@ -2212,7 +2212,7 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "ACCOUNTPRODUCT",
+								"referenceName": "ACCOUNTPRODUCTAGREEMENT",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -2251,6 +2251,7 @@
 				"[concat(variables('factoryId'), '/datasets/ENERGYUSAGE_parquet')]",
 				"[concat(variables('factoryId'), '/datasets/ACCOUNTPRODUCT')]",
 				"[concat(variables('factoryId'), '/datasets/ACCOUNTPRODUCT_parquet')]",
+				"[concat(variables('factoryId'), '/datasets/ACCOUNTPRODUCTAGREEMENT')]",
 				"[concat(variables('factoryId'), '/datasets/ACCOUNTPRODUCTAGREEMENT_parquet')]"
 			]
 		},
@@ -12696,7 +12697,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "ENERGYHOURLYUSAGEDETAIL",
+						"name": "accountproductagreement",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -12710,19 +12711,14 @@
 						"typeProperties": {
 							"source": {
 								"type": "OracleSource",
-								"partitionOption": "DynamicRange",
-								"partitionSettings": {
-									"partitionColumnName": "METERENERGYMONTHLYUSAGEID",
-									"partitionUpperBound": "",
-									"partitionLowerBound": ""
-								},
-								"convertDecimalToInteger": false,
-								"queryTimeout": "24:00:00"
+								"partitionOption": "None",
+								"queryTimeout": "02:00:00"
 							},
 							"sink": {
 								"type": "ParquetSink",
 								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
+									"type": "AzureBlobStorageWriteSettings",
+									"copyBehavior": "FlattenHierarchy"
 								},
 								"formatSettings": {
 									"type": "ParquetWriteSettings"
@@ -12740,14 +12736,14 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "ENERGYHOURLYUSAGEDETAIL",
+								"referenceName": "ACCOUNTPRODUCTAGREEMENT",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "energyhourlyusagedetail_parquet",
+								"referenceName": "ACCOUNTPRODUCTAGREEMENT_parquet",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -12761,8 +12757,8 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/ENERGYHOURLYUSAGEDETAIL')]",
-				"[concat(variables('factoryId'), '/datasets/energyhourlyusagedetail_parquet')]"
+				"[concat(variables('factoryId'), '/datasets/ACCOUNTPRODUCTAGREEMENT')]",
+				"[concat(variables('factoryId'), '/datasets/ACCOUNTPRODUCTAGREEMENT_parquet')]"
 			]
 		}
 	]
