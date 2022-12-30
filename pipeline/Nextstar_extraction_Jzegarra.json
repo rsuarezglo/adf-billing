@@ -449,7 +449,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ACCOUNTPRODUCT",
+						"referenceName": "ACCOUNTPRODUCTAGREEMENT",
 						"type": "DatasetReference"
 					}
 				],
