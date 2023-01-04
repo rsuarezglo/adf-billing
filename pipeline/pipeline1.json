@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "accountproductagreement",
+				"name": "ENERGYHOURLYUSAGEDETAIL",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -17,14 +17,20 @@
 				"typeProperties": {
 					"source": {
 						"type": "OracleSource",
-						"partitionOption": "None",
-						"queryTimeout": "02:00:00"
+						"oracleReaderQuery": "SELECT * \nFROM AEPE_BILLING.ENERGYHOURLYUSAGEDETAIL \nWHERE EXTRACT( YEAR FROM DATECREATED ) >= 2023\n",
+						"partitionOption": "DynamicRange",
+						"partitionSettings": {
+							"partitionColumnName": "METERENERGYMONTHLYUSAGEID",
+							"partitionUpperBound": "",
+							"partitionLowerBound": ""
+						},
+						"convertDecimalToInteger": false,
+						"queryTimeout": "24:00:00"
 					},
 					"sink": {
 						"type": "ParquetSink",
 						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings",
-							"copyBehavior": "FlattenHierarchy"
+							"type": "AzureBlobStorageWriteSettings"
 						},
 						"formatSettings": {
 							"type": "ParquetWriteSettings"
@@ -42,13 +48,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ACCOUNTPRODUCTAGREEMENT",
+						"referenceName": "ENERGYHOURLYUSAGEDETAIL",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "ACCOUNTPRODUCTAGREEMENT_parquet",
+						"referenceName": "energyhourlyusagedetail_parquet",
 						"type": "DatasetReference"
 					}
 				]
