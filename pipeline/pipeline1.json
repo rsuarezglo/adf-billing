@@ -21,7 +21,7 @@
 						"partitionSettings": {
 							"partitionColumnName": "METERENERGYMONTHLYUSAGEID",
 							"partitionUpperBound": "1400",
-							"partitionLowerBound": "10"
+							"partitionLowerBound": ""
 						},
 						"convertDecimalToInteger": false,
 						"queryTimeout": "24:00:00"
