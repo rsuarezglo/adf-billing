@@ -17,12 +17,11 @@
 				"typeProperties": {
 					"source": {
 						"type": "OracleSource",
-						"oracleReaderQuery": "SELECT * \nFROM AEPE_BILLING.ENERGYHOURLYUSAGEDETAIL \nWHERE EXTRACT( YEAR FROM DATECREATED ) >= 2023\n",
 						"partitionOption": "DynamicRange",
 						"partitionSettings": {
 							"partitionColumnName": "METERENERGYMONTHLYUSAGEID",
-							"partitionUpperBound": "",
-							"partitionLowerBound": ""
+							"partitionUpperBound": "1400",
+							"partitionLowerBound": "10"
 						},
 						"convertDecimalToInteger": false,
 						"queryTimeout": "24:00:00"
@@ -37,6 +36,7 @@
 						}
 					},
 					"enableStaging": false,
+					"parallelCopies": 15,
 					"translator": {
 						"type": "TabularTranslator",
 						"typeConversion": true,
