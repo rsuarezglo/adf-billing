@@ -20,8 +20,8 @@
 						"partitionOption": "DynamicRange",
 						"partitionSettings": {
 							"partitionColumnName": "METERENERGYMONTHLYUSAGEID",
-							"partitionUpperBound": "1400",
-							"partitionLowerBound": ""
+							"partitionUpperBound": "5000000",
+							"partitionLowerBound": "1"
 						},
 						"convertDecimalToInteger": false,
 						"queryTimeout": "24:00:00"
@@ -29,7 +29,9 @@
 					"sink": {
 						"type": "ParquetSink",
 						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings"
+							"type": "AzureBlobStorageWriteSettings",
+							"maxConcurrentConnections": 15,
+							"blockSizeInMB": 100
 						},
 						"formatSettings": {
 							"type": "ParquetWriteSettings"
