@@ -224,7 +224,7 @@
 				]
 			},
 			{
-				"name": "METERENERGYMONTHLYUSAGE",
+				"name": "DELIVERYCHARGEITEMTYPE",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -269,13 +269,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "METERENERGYMONTHLYUSAGE",
+						"referenceName": "DELIVERYCHARGEITEMTYPE",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "meterenergymonthlyusage_parquet",
+						"referenceName": "DELIVERYCHARGEITEMTYPE_parquet",
 						"type": "DatasetReference"
 					}
 				]
@@ -285,7 +285,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "METERENERGYMONTHLYUSAGE",
+						"activity": "DELIVERYCHARGEITEMTYPE",
 						"dependencyConditions": [
 							"Succeeded"
 						]
