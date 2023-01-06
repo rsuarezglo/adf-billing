@@ -75,6 +75,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "OracleSource",
+						"oracleReaderQuery": "SELECT DISTINCT \nDATECREATED \nFROM AEPE_BILLING.ENERGYHOURLYUSAGEDETAIL \nWHERE EXTRACT( YEAR FROM DATECREATED ) >= 2023\n",
 						"partitionOption": "DynamicRange",
 						"partitionSettings": {
 							"partitionColumnName": "METERENERGYMONTHLYUSAGEID",

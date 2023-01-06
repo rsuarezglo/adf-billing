@@ -1,0 +1,19 @@
+{
+	"name": "SALESINVOICEERROR",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dev2core",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ELECTRICAL BILLING/Oracle Sources"
+		},
+		"annotations": [],
+		"type": "OracleTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "AEPE_BILLING",
+			"table": "SALESINVOICEERROR"
+		}
+	}
+}
