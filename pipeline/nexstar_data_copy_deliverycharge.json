@@ -110,7 +110,7 @@
 				]
 			},
 			{
-				"name": "ENERGYMONTHLYSERVICEPOINT",
+				"name": "DELIVERYCHARGEDETAIL",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -155,13 +155,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ENERGYMONTHLYSERVICEPOINT",
+						"referenceName": "DELIVERYCHARGEDETAIL",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "energymonthlyservicepoint_parquet",
+						"referenceName": "DELIVERYCHARGEDETAIL_parquet",
 						"type": "DatasetReference"
 					}
 				]
@@ -171,7 +171,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "ENERGYMONTHLYSERVICEPOINT",
+						"activity": "DELIVERYCHARGEDETAIL",
 						"dependencyConditions": [
 							"Succeeded"
 						]
