@@ -281,7 +281,7 @@
 				]
 			},
 			{
-				"name": "USAGEALLOWEDTHRESHOLDFACTOR",
+				"name": "DELIVERYCHARGEMESSAGE",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -326,13 +326,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "USAGEALLOWEDTHRESHOLDFACTOR",
+						"referenceName": "DELIVERYCHARGEMESSAGE",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "usageallowedthresholdfactor_parquet",
+						"referenceName": "DELIVERYCHARGEMESSAGE_parquet",
 						"type": "DatasetReference"
 					}
 				]
@@ -342,7 +342,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "USAGEALLOWEDTHRESHOLDFACTOR",
+						"activity": "DELIVERYCHARGEMESSAGE",
 						"dependencyConditions": [
 							"Succeeded"
 						]
