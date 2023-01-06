@@ -338,7 +338,7 @@
 				]
 			},
 			{
-				"name": "USAGEBEHAVIORRULES",
+				"name": "DELIVERYCHARGESTATUS",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -383,13 +383,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "USAGEBEHAVIORRULES",
+						"referenceName": "DELIVERYCHARGESTATUS",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "usagebehaviorrules_parquet",
+						"referenceName": "DELIVERYCHARGESTATUS_parquet",
 						"type": "DatasetReference"
 					}
 				]
