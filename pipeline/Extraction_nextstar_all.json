@@ -1,0 +1,84 @@
+{
+	"name": "Extraction_nextstar_all",
+	"properties": {
+		"activities": [
+			{
+				"name": "Nextstar_extraction_Jflores",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Nextstar_extraction_Jflores",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Nextstar_extraction_Jzegarra",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Nextstar_extraction_Jflores",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Nextstar_extraction_Jzegarra",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Nextstar_extraction_plopez",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Nextstar_extraction_Jzegarra",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Nextstar_extraction_plopez",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Nextstar_extraction_sdemichelis",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Nextstar_extraction_plopez",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Nextstar_extraction_sdemichelis",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Extraction Nextstar"
+		},
+		"annotations": []
+	}
+}

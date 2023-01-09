@@ -15,5 +15,6 @@
 			"schema": "AEPE_BILLING",
 			"table": "ENERGYMONTHLYSERVICEPOINT"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

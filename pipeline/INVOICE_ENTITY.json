@@ -1,9 +1,9 @@
 {
-	"name": "nexstar_data_copy",
+	"name": "INVOICE_ENTITY",
 	"properties": {
 		"activities": [
 			{
-				"name": "DAYLIGHTSAVINGTUME",
+				"name": "SALESINVOICE",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -17,7 +17,9 @@
 				"typeProperties": {
 					"source": {
 						"type": "OracleSource",
+						"oracleReaderQuery": "SELECT * FROM SALESINVOICE \nWHERE DATECREATED > to_date('2022/01/01 00:00:00','yyyy/mm/dd HH24:MI:SS')",
 						"partitionOption": "None",
+						"convertDecimalToInteger": false,
 						"queryTimeout": "02:00:00"
 					},
 					"sink": {
@@ -41,23 +43,23 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DAYLIGHTSAVINGTIME",
+						"referenceName": "SALESINVOICE",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "daylightsavingtime_parquet",
+						"referenceName": "SALESINVOICE_parquet",
 						"type": "DatasetReference"
 					}
 				]
 			},
 			{
-				"name": "ENERGYHOURLYUSAGEDETAIL",
+				"name": "SALESINVOICEERROR",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "DAYLIGHTSAVINGTUME",
+						"activity": "SALESINVOICE",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -98,23 +100,23 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ENERGYHOURLYUSAGEDETAIL",
+						"referenceName": "SALESINVOICEERROR",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "energyhourlyusagedetail_parquet",
+						"referenceName": "SALESINVOICEERROR_parquet",
 						"type": "DatasetReference"
 					}
 				]
 			},
 			{
-				"name": "ENERGYMONTHLYSERVICEPOINT",
+				"name": "SALESINVOICEGROUPINGEMAIL",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "ENERGYHOURLYUSAGEDETAIL",
+						"activity": "SALESINVOICEERROR",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -155,23 +157,81 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ENERGYMONTHLYSERVICEPOINT",
+						"referenceName": "SALESINVOICEGROUPINGEMAIL",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "energymonthlyservicepoint_parquet",
+						"referenceName": "SALESINVOICEGROUPINGEMAIL_parquet",
 						"type": "DatasetReference"
 					}
 				]
 			},
 			{
-				"name": "ESTIMATEDUSAGE",
+				"name": "SALESINVOICEITEM",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "ENERGYMONTHLYSERVICEPOINT",
+						"activity": "SALESINVOICEGROUPINGEMAIL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"oracleReaderQuery": "SELECT * FROM AEPE_BILLING.SALESINVOICEITEM   \nWHERE DATECREATED > to_date('2022/01/01 00:00:00','yyyy/mm/dd HH24:MI:SS')",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SALESINVOICEITEM",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SALESINVOICEITEM_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "SALESINVOICEPAYMENT",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "SALESINVOICEITEM",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -212,23 +272,23 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ESTIMATEDUSAGE",
+						"referenceName": "SALESINVOICEPAYMENT",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "estimatedusage_parquet",
+						"referenceName": "SALESINVOICEPAYMENT_parquet",
 						"type": "DatasetReference"
 					}
 				]
 			},
 			{
-				"name": "METERENERGYMONTHLYUSAGE",
+				"name": "INVOICEFILEPATH",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "ESTIMATEDUSAGE",
+						"activity": "SALESINVOICEPAYMENT",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -269,23 +329,23 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "METERENERGYMONTHLYUSAGE",
+						"referenceName": "INVOICEFILEPATH",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "meterenergymonthlyusage_parquet",
+						"referenceName": "INVOICEFILEPATH_parquet",
 						"type": "DatasetReference"
 					}
 				]
 			},
 			{
-				"name": "USAGEALLOWEDTHRESHOLDFACTOR",
+				"name": "INVOICEITEMTYPE",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "METERENERGYMONTHLYUSAGE",
+						"activity": "INVOICEFILEPATH",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -326,23 +386,23 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "USAGEALLOWEDTHRESHOLDFACTOR",
+						"referenceName": "INVOICEITEMTYPE",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "usageallowedthresholdfactor_parquet",
+						"referenceName": "INVOICEITEMTYPE_parquet",
 						"type": "DatasetReference"
 					}
 				]
 			},
 			{
-				"name": "USAGEBEHAVIORRULES",
+				"name": "INVOICENETMETERINFORMATION",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "USAGEALLOWEDTHRESHOLDFACTOR",
+						"activity": "INVOICEITEMTYPE",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -383,18 +443,192 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "USAGEBEHAVIORRULES",
+						"referenceName": "INVOICENETMETERINFORMATION",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "usagebehaviorrules_parquet",
+						"referenceName": "INVOICENETMETERINFORMATION_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "INVOICESTATUS",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "INVOICENETMETERINFORMATION",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "INVOICESTATUS",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "INVOICESTATUS_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "BILLINGINVOICEPARAMETER",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "INVOICESTATUS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "BILLINGINVOICEPARAMETER",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "BILLINGINVOICEPARAMETER_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "MANUALINVOICE",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "BILLINGINVOICEPARAMETER",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "MANUALINVOICE",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "MANUALINVOICE_parquet",
 						"type": "DatasetReference"
 					}
 				]
 			}
 		],
+		"folder": {
+			"name": "Extraction Nextstar"
+		},
 		"annotations": []
 	}
 }

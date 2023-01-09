@@ -5,8 +5,8 @@
 		"annotations": [],
 		"type": "Oracle",
 		"typeProperties": {
-			"connectionString": "host=l1dev1-dbor01;port=1526;servicename=dev2core;user id=rsuarez",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJmOTI2MTAzZS03ZTA5LTQwOWItYjgwYy0xMmY0ZTgwZWNiNmUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"connectionString": "host=bsecore-prd1-scan.bse.local;port=1521;servicename=birtcore01p;user id=rsuarez",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIwMTI2YThlNi0zYzczLTRhNDgtYjc1NC03NTU5YmM3OWNlYWQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "IR-AEPE-legacy",

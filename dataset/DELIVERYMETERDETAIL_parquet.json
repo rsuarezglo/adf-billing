@@ -1,5 +1,5 @@
 {
-	"name": "ACCOUNTPRODUCTAGREEMENT_parquet",
+	"name": "DELIVERYMETERDETAIL_parquet",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adl_nextstar_billing",
@@ -13,7 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "accountproductagreement",
+				"fileName": "deliverymeterdetail",
 				"folderPath": "parquet-nextstar-raw",
 				"container": "nextstar"
 			},

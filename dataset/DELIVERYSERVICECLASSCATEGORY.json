@@ -1,18 +1,20 @@
 {
-	"name": "DELIVERYCHARGE",
+	"name": "DELIVERYSERVICECLASSCATEGORY",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "dev2core",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
-			"name": "ELECTRICAL BILLING/Oracle Sources"
+			"name": "ELECTRICAL BILLING/Oracle sources"
 		},
 		"annotations": [],
 		"type": "OracleTable",
 		"schema": [],
 		"typeProperties": {
 			"schema": "AEPE_BILLING",
-			"table": "DELIVERYCHARGE"
+			"table": "DELIVERYSERVICECLASSCATEGORY"
 		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

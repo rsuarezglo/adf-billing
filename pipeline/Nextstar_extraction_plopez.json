@@ -1,0 +1,845 @@
+{
+	"name": "Nextstar_extraction_plopez",
+	"properties": {
+		"activities": [
+			{
+				"name": "billing_deliverycharge_extraction",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "ID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "ID",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "SALESINVOICEID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "SALESINVOICEID",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "FROMDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "FROMDATE",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "THRUDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "THRUDATE",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "INVOICEISSUEDDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "INVOICEISSUEDDATE",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "STARTBILLINGDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "STARTBILLINGDATE",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "ENDBILLINGDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "ENDBILLINGDATE",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "DUEDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "DUEDATE",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "AMOUNTDUE",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "AMOUNTDUE",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "CURRENTCHARGES",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "CURRENTCHARGES",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "CURRENTDELIVERYCHARGESTATUS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CURRENTDELIVERYCHARGESTATUS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "BILLEDFROM",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "BILLEDFROM",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "ACCOUNTPRODUCTAGREEMENTID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "ACCOUNTPRODUCTAGREEMENTID",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "CREATEDBY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CREATEDBY",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DATECREATED",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "DATECREATED",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "LASTUPDATEDBY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LASTUPDATEDBY",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DATELASTUPDATED",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "DATELASTUPDATED",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "VERSION",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "VERSION",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "DELIVERYCHARGETYPE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DELIVERYCHARGETYPE",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ACCOUNTINGSUBMISSIONDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "ACCOUNTINGSUBMISSIONDATE",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "ACCOUNTINGSUBMISSIONSTATUS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ACCOUNTINGSUBMISSIONSTATUS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TOTALUSAGE",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "TOTALUSAGE",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "TOTALDEMAND",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "TOTALDEMAND",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "DOCUMENTID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DOCUMENTID",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ISFROMPDF",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ISFROMPDF",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ORIGINALPURCHASEINVOICENUMBER",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ORIGINALPURCHASEINVOICENUMBER",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DELIVERYCHARGEPARENTID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "DELIVERYCHARGEPARENTID",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "OTHERCHARGES",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "OTHERCHARGES",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "CANCELLATIONDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "CANCELLATIONDATE",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "REMAININGEXCESSCREDIT",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "REMAININGEXCESSCREDIT",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "LDCSERVICECLASS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LDCSERVICECLASS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PURPOSECODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PURPOSECODE",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "AMOUNTDUEFROMEDI",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "AMOUNTDUEFROMEDI",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "OTHERCHARGESFROMEDI",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "OTHERCHARGESFROMEDI",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "GROSSRECEIPTSTAXINFO",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "GROSSRECEIPTSTAXINFO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "SALESSTATETAXINFO",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "SALESSTATETAXINFO",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "ROTATINGOUTAGEGROUP",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ROTATINGOUTAGEGROUP",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NEXTREADDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "NEXTREADDATE",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "REACTIVEDEMAND",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "REACTIVEDEMAND",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							},
+							{
+								"source": {
+									"name": "SERVICEVOLTAGE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SERVICEVOLTAGE",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "PAYMENTSTATUS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PAYMENTSTATUS",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "AMOUNTAFTERPOST",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "AMOUNTAFTERPOST",
+									"type": "Double",
+									"physicalType": "DOUBLE"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DELIVERYCHARGE",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DELIVERYCHARGE_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "billing_deliverychargecodedescription_extraction",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "billing_deliverycharge_extraction",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DELIVERYCHARGECODEDESCRIPTION",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DELIVERYCHARGECODEDESCRIPTION_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "billing_deliverychargedetail_extraction",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "billing_deliverychargecodedescription_extraction",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DELIVERYCHARGEDETAIL",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DELIVERYCHARGEDETAIL_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "billing_deliverychargeincludedetail_extraction",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "billing_deliverychargedetail_extraction",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DELIVERYCHARGEINCLUDEDETAIL",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DELIVERYCHARGEINCLUDEDETAIL_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "billing_deliveryserviceclasscategory_extraction",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "billing_deliverychargeincludedetail_extraction",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "ID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "ID",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							},
+							{
+								"source": {
+									"name": "LDCSERVICECLASSDESCRIPTION",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LDCSERVICECLASSDESCRIPTION",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DELIVERYCHARGEID",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "DELIVERYCHARGEID",
+									"type": "Decimal",
+									"physicalType": "DECIMAL"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DeliveryServiceClassCategory",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DELIVERYSERVICECLASSCATEGORY_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "billing_energymonthlyservicepoint_extraction",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "billing_deliveryserviceclasscategory_extraction",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ENERGYMONTHLYSERVICEPOINT",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "energymonthlyservicepoint_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Extraction Nextstar"
+		},
+		"annotations": []
+	}
+}
