@@ -18,6 +18,7 @@
 					"source": {
 						"type": "OracleSource",
 						"partitionOption": "None",
+						"convertDecimalToInteger": false,
 						"queryTimeout": "02:00:00"
 					},
 					"sink": {
@@ -269,7 +270,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DELIVERYCHARGEITEMTYPE",
+						"referenceName": "DeliveryChargeItemType",
 						"type": "DatasetReference"
 					}
 				],
@@ -383,7 +384,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DELIVERYCHARGESTATUS",
+						"referenceName": "DeliveryChargeStatus",
 						"type": "DatasetReference"
 					}
 				],
