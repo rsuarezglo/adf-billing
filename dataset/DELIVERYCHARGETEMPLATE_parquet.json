@@ -1,5 +1,5 @@
 {
-	"name": "estimatedusage_parquet",
+	"name": "DELIVERYCHARGETEMPLATE_parquet",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adl_nextstar_billing",
@@ -13,7 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "estimatedusage",
+				"fileName": "deliverychargetemplate",
 				"folderPath": "parquet-nextstar-raw",
 				"container": "nextstar"
 			},

@@ -1,5 +1,5 @@
 {
-	"name": "DELIVERYCHARGE",
+	"name": "DELIVERYCHARGETEMPLATE",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "dev2core",
@@ -13,6 +13,7 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": "AEPE_BILLING",
-			"table": "DELIVERYCHARGE"
+			"table": "DELIVERYCHARGETEMPLATE"
 		}
+	}
 }
