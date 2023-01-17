@@ -79,6 +79,94 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTATTRIBUTE')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "dev2core",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Oracle Sources"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AEPE_BILLING",
+					"table": "ACCOUNTPRODUCTATTRIBUTE"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTFEATURE')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "dev2core",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Oracle Sources"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AEPE_BILLING",
+					"table": "ACCOUNTPRODUCTFEATURE"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTHISTORY')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "dev2core",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Oracle Sources"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AEPE_BILLING",
+					"table": "ACCOUNTPRODUCTHISTORY"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTBILLINGPREFERENCES')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "dev2core",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Oracle Sources"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AEPE_PROVISIONING",
+					"table": "ACCOUNTPRODUCTBILLINGPREFERENCES"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Aurea_extraction')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -4957,55 +5045,6 @@
 				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_Jzegarra')]",
 				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_plopez')]",
 				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_sdemichelis')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Json parser')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Data flow1",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "dataflow1",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"cons": {},
-									"source1": {},
-									"sink1": {}
-								}
-							},
-							"staging": {},
-							"integrationRuntime": {
-								"referenceName": "IR-Dev",
-								"type": "IntegrationRuntimeReference"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": [],
-				"lastPublishTime": "2022-11-12T01:47:27Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/dataflow1')]"
 			]
 		}
 	]

@@ -14582,6 +14582,102 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/dev2core')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTATTRIBUTE')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "dev2core",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Oracle Sources"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AEPE_BILLING",
+					"table": "ACCOUNTPRODUCTATTRIBUTE"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/dev2core')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTFEATURE')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "dev2core",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Oracle Sources"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AEPE_BILLING",
+					"table": "ACCOUNTPRODUCTFEATURE"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/dev2core')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTHISTORY')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "dev2core",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Oracle Sources"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AEPE_BILLING",
+					"table": "ACCOUNTPRODUCTHISTORY"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/dev2core')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTBILLINGPREFERENCES')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "dev2core",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Oracle Sources"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AEPE_PROVISIONING",
+					"table": "ACCOUNTPRODUCTBILLINGPREFERENCES"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/dev2core')]"
+			]
 		}
 	]
 }
