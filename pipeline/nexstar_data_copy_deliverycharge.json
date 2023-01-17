@@ -269,7 +269,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DELIVERYCHARGEITEMTYPE",
+						"referenceName": "DeliveryChargeItemType",
 						"type": "DatasetReference"
 					}
 				],
@@ -383,7 +383,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DELIVERYCHARGESTATUS",
+						"referenceName": "DeliveryChargeStatus",
 						"type": "DatasetReference"
 					}
 				],
@@ -452,6 +452,9 @@
 				]
 			}
 		],
+		"folder": {
+			"name": "Extraction Nextstar"
+		},
 		"annotations": []
 	}
 }
