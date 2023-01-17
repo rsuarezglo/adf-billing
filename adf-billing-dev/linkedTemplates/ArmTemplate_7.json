@@ -167,6 +167,114 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTBILLINGPREFERENCES_PARQUET')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adl_nextstar_billing",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "ACCOUNTPRODUCTBILLINGPREFERENCES",
+						"folderPath": "parquet-nextstar-raw",
+						"container": "nextstar"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTHISTORY_PARQUET')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adl_nextstar_billing",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "ACCOUNTPRODUCTHISTORY",
+						"folderPath": "parquet-nextstar-raw",
+						"container": "nextstar"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTFEATURE_PARQUET')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adl_nextstar_billing",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "ACCOUNTPRODUCTFEATURE",
+						"folderPath": "parquet-nextstar-raw",
+						"container": "nextstar"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTATTRIBUTE_PARQUET')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adl_nextstar_billing",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "ACCOUNTPRODUCTATTRIBUTE",
+						"folderPath": "parquet-nextstar-raw",
+						"container": "nextstar"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Aurea_extraction')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -4216,836 +4324,6 @@
 				"lastPublishTime": "2022-11-28T17:29:50Z"
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/nexstar_data_copy_deliverycharge')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "DELIVERYCHARGE",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "DELIVERYCHARGE",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DELIVERYCHARGE_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "DELIVERYCHARGECODEDESCRIPTION",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "DELIVERYCHARGE",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "DELIVERYCHARGECODEDESCRIPTION",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DELIVERYCHARGECODEDESCRIPTION_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "DELIVERYCHARGEDETAIL",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "DELIVERYCHARGECODEDESCRIPTION",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "DELIVERYCHARGEDETAIL",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DELIVERYCHARGEDETAIL_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "DELIVERYCHARGEINCLUDEDETAIL",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "DELIVERYCHARGEDETAIL",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "DELIVERYCHARGEINCLUDEDETAIL",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DELIVERYCHARGEINCLUDEDETAIL_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "DELIVERYCHARGEITEMTYPE",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "DELIVERYCHARGEINCLUDEDETAIL",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "DeliveryChargeItemType",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DELIVERYCHARGEITEMTYPE_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "DELIVERYCHARGEMESSAGE",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "DELIVERYCHARGEITEMTYPE",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "DELIVERYCHARGEMESSAGE",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DELIVERYCHARGEMESSAGE_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "DELIVERYCHARGESTATUS",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "DELIVERYCHARGEMESSAGE",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "DeliveryChargeStatus",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DELIVERYCHARGESTATUS_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "DELIVERYCHARGETEMPLATE",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "DELIVERYCHARGESTATUS",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "None",
-								"queryTimeout": "02:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "DELIVERYCHARGETEMPLATE",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DELIVERYCHARGETEMPLATE_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/DELIVERYCHARGECODEDESCRIPTION')]",
-				"[concat(variables('factoryId'), '/datasets/DELIVERYCHARGEDETAIL')]",
-				"[concat(variables('factoryId'), '/datasets/DELIVERYCHARGEINCLUDEDETAIL')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "ENERGYHOURLYUSAGEDETAIL",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "OracleSource",
-								"partitionOption": "DynamicRange",
-								"partitionSettings": {
-									"partitionColumnName": "METERENERGYMONTHLYUSAGEID",
-									"partitionUpperBound": "5000000",
-									"partitionLowerBound": "1"
-								},
-								"convertDecimalToInteger": false,
-								"queryTimeout": "24:00:00"
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings",
-									"maxConcurrentConnections": 15,
-									"blockSizeInMB": 100
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"parallelCopies": 15,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "ENERGYHOURLYUSAGEDETAIL",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "energyhourlyusagedetail_parquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
-			"type": "Microsoft.DataFactory/factories/dataflows",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "MappingDataFlow",
-				"typeProperties": {
-					"sources": [
-						{
-							"dataset": {
-								"referenceName": "ConsumptionDetail_parquet",
-								"type": "DatasetReference"
-							},
-							"name": "cons"
-						},
-						{
-							"dataset": {
-								"referenceName": "Consumption_parquet",
-								"type": "DatasetReference"
-							},
-							"name": "source1"
-						}
-					],
-					"sinks": [
-						{
-							"dataset": {
-								"referenceName": "Consumption_json",
-								"type": "DatasetReference"
-							},
-							"name": "sink1"
-						}
-					],
-					"transformations": [
-						{
-							"name": "select1"
-						},
-						{
-							"name": "derivedColumn1"
-						},
-						{
-							"name": "select2"
-						},
-						{
-							"name": "select3"
-						},
-						{
-							"name": "join1"
-						}
-					],
-					"scriptLines": [
-						"source(output(",
-						"          ConsDetID as integer,",
-						"          ConsID as integer,",
-						"          ConsDetType as string,",
-						"          ConsDetQty as decimal(18,4),",
-						"          ConsUnitID as integer,",
-						"          ConsMultiplier as decimal(9,2),",
-						"          Source as string,",
-						"          SourceID as integer,",
-						"          MeterRegisterId as integer,",
-						"          CreateDate as timestamp,",
-						"          LastModifiedDate as timestamp,",
-						"          CreatedByID as integer,",
-						"          ModifiedByID as integer",
-						"     ),",
-						"     allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     limit: 1000,",
-						"     ignoreNoFilesFound: false,",
-						"     format: 'parquet') ~> cons",
-						"source(output(",
-						"          ConsID as integer,",
-						"          MeterID as integer,",
-						"          InvoiceID as integer,",
-						"          DateFrom as timestamp,",
-						"          DateTo as timestamp,",
-						"          IntervalTime as string,",
-						"          BegRead as decimal(18,4),",
-						"          EndRead as decimal(18,4),",
-						"          SeqNo as string,",
-						"          Status as string,",
-						"          Note as string,",
-						"          Type as string,",
-						"          ReadingMth as string,",
-						"          Source as string,",
-						"          SourceID as integer,",
-						"          RequestID as integer,",
-						"          Processed as string,",
-						"          ProcessDate as timestamp,",
-						"          DoNotProcess as string,",
-						"          DNPCode as string,",
-						"          FinalFlag as boolean,",
-						"          IsBeginReadLDCEstimate as boolean,",
-						"          IsEndReadLDCEstimate as boolean,",
-						"          CreateDate as timestamp,",
-						"          CreatedByID as integer,",
-						"          migr_bill_batch_id as integer,",
-						"          Migr_acct_no as string,",
-						"          migr_service_Id as string,",
-						"          migr_division_code as string,",
-						"          migr_meter_number as string,",
-						"          LastModifiedDate as timestamp,",
-						"          ModifiedByID as integer,",
-						"          ValidatedFlag as boolean,",
-						"          ValidatedDate as timestamp,",
-						"          ThermFactor as decimal(18,6),",
-						"          DocumentDueDate as timestamp,",
-						"          BillingTypeID as integer",
-						"     ),",
-						"     allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     limit: 1000,",
-						"     ignoreNoFilesFound: false,",
-						"     format: 'parquet') ~> source1",
-						"cons select(mapColumn(",
-						"          ConsID,",
-						"          ConsDetID,",
-						"          ConsDetType,",
-						"          ConsDetQty,",
-						"          ConsUnitID",
-						"     ),",
-						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> select1",
-						"select1 derive(Detail = @(ConsDetID=ConsDetID,",
-						"          ConsDetQty=ConsDetQty,",
-						"          ConsDetType=ConsDetType,",
-						"          ConsUnitID=ConsUnitID)) ~> derivedColumn1",
-						"derivedColumn1 select(mapColumn(",
-						"          ConsID,",
-						"          Detail",
-						"     ),",
-						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> select2",
-						"source1 select(mapColumn(",
-						"          ConsID,",
-						"          MeterID,",
-						"          InvoiceID,",
-						"          DateFrom,",
-						"          DateTo,",
-						"          IntervalTime,",
-						"          BegRead,",
-						"          EndRead,",
-						"          SeqNo,",
-						"          Status,",
-						"          Type,",
-						"          ReadingMth,",
-						"          Source,",
-						"          SourceID,",
-						"          RequestID,",
-						"          Processed,",
-						"          BillingTypeID",
-						"     ),",
-						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> select3",
-						"select3, select2 join(select3@ConsID == select2@ConsID,",
-						"     joinType:'left',",
-						"     matchType:'exact',",
-						"     ignoreSpaces: false,",
-						"     broadcast: 'auto')~> join1",
-						"join1 sink(allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     truncate: true,",
-						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true,",
-						"     partitionBy('hash', 1)) ~> sink1"
-					]
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Extraction_nextstar_all')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Nextstar_extraction_Jflores",
-						"type": "ExecutePipeline",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "Nextstar_extraction_Jflores",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "Nextstar_extraction_Jzegarra",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "Nextstar_extraction_Jflores",
-								"dependencyConditions": [
-									"Completed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "Nextstar_extraction_Jzegarra",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "Nextstar_extraction_plopez",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "Nextstar_extraction_Jzegarra",
-								"dependencyConditions": [
-									"Completed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "Nextstar_extraction_plopez",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "Nextstar_extraction_sdemichelis",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "Nextstar_extraction_plopez",
-								"dependencyConditions": [
-									"Completed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "Nextstar_extraction_sdemichelis",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "Extraction Nextstar"
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_Jflores')]",
-				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_Jzegarra')]",
-				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_plopez')]",
-				"[concat(variables('factoryId'), '/pipelines/Nextstar_extraction_sdemichelis')]"
-			]
 		}
 	]
 }
