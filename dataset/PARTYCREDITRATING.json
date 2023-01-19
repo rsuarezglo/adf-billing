@@ -1,5 +1,5 @@
 {
-	"name": "PARTYCREDITRATING_copy",
+	"name": "PARTYCREDITRATING",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "dev2core",

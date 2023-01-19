@@ -1,5 +1,5 @@
 {
-	"name": "PARTYCONTACTMECHANISM",
+	"name": "PARTYRELATIONSHIP",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "dev2core",
@@ -13,7 +13,7 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": "AEPE_PROVISIONING",
-			"table": "PARTYCONTACTMECHANISM"
+			"table": "PARTYRELATIONSHIP"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
