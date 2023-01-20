@@ -1,0 +1,20 @@
+{
+	"name": "PARTYCALENDARASSOCIATION",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dev2core",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ELECTRICAL BILLING/Oracle Sources"
+		},
+		"annotations": [],
+		"type": "OracleTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "AEPE_PROVISIONING",
+			"table": "PARTYCALENDARASSOCIATION"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
