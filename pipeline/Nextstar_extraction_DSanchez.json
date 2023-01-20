@@ -146,7 +146,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "METERREADSCHEDULE_PARQUET",
+						"referenceName": "ACCOUNTCHANGEREQUESTMETER_parquet",
 						"type": "DatasetReference"
 					}
 				]
