@@ -1,0 +1,75 @@
+{
+	"name": "dataflow2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Rate_parquet",
+						"type": "DatasetReference"
+					},
+					"name": "Rate"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "select1"
+				},
+				{
+					"name": "derivedChecksumCol1"
+				},
+				{
+					"name": "derivedChecksumCol2"
+				},
+				{
+					"name": "exists1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          RateID as integer,",
+				"          CSPID as integer,",
+				"          RateCode as string,",
+				"          RateDesc as string,",
+				"          EffectiveDate as timestamp,",
+				"          ExpirationDate as timestamp,",
+				"          RateType as string,",
+				"          PlanType as integer,",
+				"          IsMajority as boolean,",
+				"          TemplateFlag as boolean,",
+				"          LDCCode as integer,",
+				"          CreateDate as timestamp,",
+				"          UserID as integer,",
+				"          RatePackageName as string,",
+				"          CustType as string,",
+				"          ServiceType as string,",
+				"          DivisionCode as string,",
+				"          ConsUnitId as integer,",
+				"          ActiveFlag as boolean,",
+				"          LDCRateCode as string,",
+				"          migr_plan_id as integer,",
+				"          migr_custid as integer,",
+				"          ClonedRateID as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> Rate",
+				"Rate select(mapColumn(",
+				"          RateID,",
+				"          RateCode,",
+				"          LDCRateCode",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"Rate derive(checksum = sha2(256, RateID,RateCode,LDCRateCode)) ~> derivedChecksumCol1",
+				"select1 derive(checksum = sha2(256, RateID,RateCode,LDCRateCode)) ~> derivedChecksumCol2",
+				"derivedChecksumCol1, derivedChecksumCol2 exists(derivedChecksumCol1@checksum == derivedChecksumCol2@checksum,",
+				"     negate:false,",
+				"     broadcast: 'auto')~> exists1"
+			]
+		}
+	}
+}
