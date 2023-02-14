@@ -305,7 +305,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTSERVICEPOINTDETAIL')]",
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTATTRIBUTE')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -321,7 +321,7 @@
 				"schema": [],
 				"typeProperties": {
 					"schema": "AEPE_BILLING",
-					"table": "ACCOUNTPRODUCTSERVICEPOINTDETAIL"
+					"table": "ACCOUNTPRODUCTATTRIBUTE"
 				}
 			},
 			"dependsOn": [
@@ -329,7 +329,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTSERVICEPOINTDETAIL_parquet')]",
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTATTRIBUTE_PARQUET')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -345,7 +345,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "accountproductservicepointdetail",
+						"fileName": "ACCOUNTPRODUCTATTRIBUTE",
 						"folderPath": "parquet-nextstar-raw",
 						"container": "nextstar"
 					},
@@ -358,7 +358,31 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCT_parquet')]",
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTBILLINGPREFERENCES')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "dev2core",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ELECTRICAL BILLING/Oracle Sources"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "AEPE_PROVISIONING",
+					"table": "ACCOUNTPRODUCTBILLINGPREFERENCES"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/dev2core')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTBILLINGPREFERENCES_PARQUET')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -374,7 +398,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "accountproduct",
+						"fileName": "ACCOUNTPRODUCTBILLINGPREFERENCES",
 						"folderPath": "parquet-nextstar-raw",
 						"container": "nextstar"
 					},
@@ -387,83 +411,31 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Account')]",
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTFEATURE')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "Aurea",
+					"referenceName": "dev2core",
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "GAS BILLING/SQL Sources"
+					"name": "ELECTRICAL BILLING/Oracle Sources"
 				},
 				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "AccountID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "AccountTypeID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "CustID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "RateID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "AcctsRecID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "AccountNo",
-						"type": "varchar"
-					},
-					{
-						"name": "BudgetBilling",
-						"type": "char"
-					},
-					{
-						"name": "BudgetBillingAmt",
-						"type": "money",
-						"precision": 19,
-						"scale": 4
-					},
-					{
-						"name": "EffectiveDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "ExpirationDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					}
-				],
+				"type": "OracleTable",
+				"schema": [],
 				"typeProperties": {
-					"schema": "dbo",
-					"table": "Account"
+					"schema": "AEPE_BILLING",
+					"table": "ACCOUNTPRODUCTFEATURE"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Aurea')]"
+				"[concat(variables('factoryId'), '/linkedServices/dev2core')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Account_parquet')]",
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTFEATURE_PARQUET')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -472,16 +444,16 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "GAS BILLING/Aurea_export_parquet_files"
+					"name": "ELECTRICAL BILLING/Nextstar_export_parquet_files"
 				},
 				"annotations": [],
 				"type": "Parquet",
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "daylightsavingtime",
+						"fileName": "ACCOUNTPRODUCTFEATURE",
 						"folderPath": "parquet-nextstar-raw",
-						"container": "nexstar"
+						"container": "nextstar"
 					},
 					"compressionCodec": "snappy"
 				},
@@ -492,184 +464,27 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Address')]",
+			"name": "[concat(parameters('factoryName'), '/ACCOUNTPRODUCTHISTORY')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "Aurea",
+					"referenceName": "dev2core",
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "GAS BILLING/SQL Sources"
+					"name": "ELECTRICAL BILLING/Oracle Sources"
 				},
 				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "AddrID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ValidationStatusID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "AttnMS",
-						"type": "varchar"
-					},
-					{
-						"name": "Addr1",
-						"type": "varchar"
-					},
-					{
-						"name": "Addr2",
-						"type": "varchar"
-					},
-					{
-						"name": "City",
-						"type": "varchar"
-					},
-					{
-						"name": "State",
-						"type": "char"
-					},
-					{
-						"name": "Zip",
-						"type": "varchar"
-					},
-					{
-						"name": "Zip4",
-						"type": "char"
-					},
-					{
-						"name": "DPBC",
-						"type": "char"
-					},
-					{
-						"name": "CityID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "CountyID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "County",
-						"type": "nvarchar"
-					},
-					{
-						"name": "HomePhone",
-						"type": "varchar"
-					},
-					{
-						"name": "WorkPhone",
-						"type": "varchar"
-					},
-					{
-						"name": "FaxPhone",
-						"type": "varchar"
-					},
-					{
-						"name": "OtherPhone",
-						"type": "varchar"
-					},
-					{
-						"name": "Email",
-						"type": "varchar"
-					},
-					{
-						"name": "ESIID",
-						"type": "varchar"
-					},
-					{
-						"name": "GeoCode",
-						"type": "varchar"
-					},
-					{
-						"name": "Status",
-						"type": "char"
-					},
-					{
-						"name": "DeliveryPointCode",
-						"type": "char"
-					},
-					{
-						"name": "CreateDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Migr_Enrollid",
-						"type": "varchar"
-					},
-					{
-						"name": "PhoneExtension",
-						"type": "varchar"
-					},
-					{
-						"name": "OtherExtension",
-						"type": "varchar"
-					},
-					{
-						"name": "FaxExtension",
-						"type": "varchar"
-					},
-					{
-						"name": "TaxingDistrict",
-						"type": "varchar"
-					},
-					{
-						"name": "TaxInCity",
-						"type": "bit"
-					},
-					{
-						"name": "CchVersion",
-						"type": "int",
-						"precision": 10
-					}
-				],
+				"type": "OracleTable",
+				"schema": [],
 				"typeProperties": {
-					"schema": "dbo",
-					"table": "Address"
+					"schema": "AEPE_BILLING",
+					"table": "ACCOUNTPRODUCTHISTORY"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Aurea')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Address_parquet')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "adl_nextstar_billing",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "GAS BILLING/Aurea_export_parquet_files"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "Address",
-						"folderPath": "parquet-aurea-raw",
-						"container": "aurea-pipelines"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/adl_nextstar_billing')]"
+				"[concat(variables('factoryId'), '/linkedServices/dev2core')]"
 			]
 		}
 	]
